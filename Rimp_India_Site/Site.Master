@@ -83,10 +83,6 @@
                         </a>--%>
                     </div>
 
-
-                    <a href="javascript:void(0)" class="ms-toggle-left btn-navbar-menu">
-                        <i class="zmdi zmdi-menu"></i>
-                    </a>
                 </div>
                 <!-- container -->
             </nav>
@@ -162,14 +158,11 @@
                                     </p>
                                     <p>
                                         <i class="color-info-light zmdi zmdi-email mr-1"></i>
-                                        <a href="mailto:joe@example.com">manish@rimpindia.com</a>
+                                        <a href="mailto:test@example.com">test@example.com</a>
                                     </p>
                                     <p>
-                                        <i class="color-royal-light zmdi zmdi-phone mr-1"></i>+91 93758 61240
+                                        <i class="color-royal-light zmdi zmdi-phone mr-1"></i>+91 88566 99566
                                     </p>
-                                    <%--  <p>
-                                        <i class="color-success-light fa fa-fax mr-1"></i>+34 123 456 7890
-                                    </p>--%>
                                 </address>
                             </div>
                             <div class="ms-footbar-block">

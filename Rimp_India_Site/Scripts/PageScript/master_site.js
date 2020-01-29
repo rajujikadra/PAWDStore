@@ -115,8 +115,8 @@ function CreateMenu() {
     MenuString = '<ul class="navbar-nav"> <li class="nav-item dropdown active"><a href="home" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-name="home">Home</a></li> <li class="nav-item dropdown"><a href="aboutus" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-name="about us">About Us</a></li>';
     for (var i = 0; i < MainMenu.length; i++) {
         if (MainMenu[i].Menu_Name == "Shop by pet") {
-            MenuString += ' <li onmouseover="GetCategoryWithSub(' + MainMenu[i].Menu_ID + ')" class="nav-item dropdown dropdown-megamenu-container" id="DivProduct">' +
-                '<a href="#"  class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-name="component" >' + MainMenu[i].Menu_Name +
+            MenuString += ' <li class="nav-item dropdown dropdown-megamenu-container" id="DivProduct">' +
+                '<a href="#" onmouseover="GetCategoryWithSub(' + MainMenu[i].Menu_ID + ')" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-name="component" >' + MainMenu[i].Menu_Name +
                 '<i class="zmdi zmdi-chevron-down" ></i >' +
                 '</a>' +
                 '<ul class="dropdown-menu dropdown-megamenu animated fadeIn animated-2x">' +
@@ -506,7 +506,7 @@ function get_all_hotProducts() {
                         '<h4 class="text-normal text-center">' + data[i].Product_Title + '</h4>' +
                         '<p style="overflow: hidden;height: 80px;">' + data[i].Product_short_description + '</p>' +
                         '<div class="mt-2"><span class="ms-tag ms-tag-success" style="font-size: 20px;">₹ ' + addCommas(data[i].Product_Price) + '</span></div>' +
-                        '<a href="javascript:void(0)" onclick="SendToSubcategoryPage(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\')" class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb"><i class="fa fa-info"></i>Inquiry</a>' +
+                        '<a href="javascript:void(0)" onclick="SendToSubcategoryPage(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\')" class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
                         '</div>' +
                         '</div>' +
                         '</div>';
