@@ -27,6 +27,7 @@ namespace Rimp_India_Site
                     if (User.Password.Equals(Password.Text))
                     {
                         Session["User"] = User;
+                        Session["UserName"] = User.UserName;
                         Response.RedirectToRoute("home");
                     }
                     else

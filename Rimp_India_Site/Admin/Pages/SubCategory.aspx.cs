@@ -71,12 +71,14 @@ namespace Rimp_India_Site.Admin.Pages
                 }
                 if (ImageFile != null)
                 {
-                    string filePath = HttpContext.Current.Server.MapPath(string.Format("~/SubCategoryImage/{0}", ImageFile));
+                    //string filePath = HttpContext.Current.Server.MapPath(string.Format("~/SubCategoryImage/{0}", ImageFile));
+                    string filePath = HttpContext.Current.Server.MapPath(string.Format("~/SubCategoryImage/" + ImageName + ""));
                     File.WriteAllBytes(filePath, ImageFile);
                 }
                 if (PageImage != null)
                 {
-                    string filePath = HttpContext.Current.Server.MapPath(string.Format("~/SubCategoryHeaderImage/{0}", PageImage));
+                    //string filePath = HttpContext.Current.Server.MapPath(string.Format("~/SubCategoryHeaderImage/{0}", PageImage));
+                    string filePath = HttpContext.Current.Server.MapPath(string.Format("~/SubCategoryHeaderImage/" + Page_Image_Name + ""));
                     File.WriteAllBytes(filePath, ImageFile);
                 }
                 var status = context.SubCategoryInsert(SubCategoryName, CategoryID, IsDelete, null, false, ImageName, 1, Heading, Description, null, Page_Image_Name, string.Empty).FirstOrDefault();
@@ -125,7 +127,7 @@ namespace Rimp_India_Site.Admin.Pages
             try
             {
                 Rimp_India_DBEntities context = new Rimp_India_DBEntities();
-                if(CatID != 0)
+                if (CatID != 0)
                 {
                     var status = (from C in context.SubCategory_Master
                                   join CC in context.Category_Master on C.Category_ID equals CC.Category_ID
@@ -143,7 +145,7 @@ namespace Rimp_India_Site.Admin.Pages
                                       IsHomePage = C.IsHomePage,
                                       ImageName = C.ImageName,
                                       Sortable = C.Sortable
-                                  }).Where(t=>t.CategoryID == CatID).OrderBy(x => x.Sortable).ToList();
+                                  }).Where(t => t.CategoryID == CatID).OrderBy(x => x.Sortable).ToList();
                     //var status = context.RGetSubCategory().ToList();
                     return JsonConvert.SerializeObject(status);
                 }
@@ -171,7 +173,7 @@ namespace Rimp_India_Site.Admin.Pages
             }
             catch (Exception ex)
             {
-                throw ex.InnerException; 
+                throw ex.InnerException;
             }
         }
 
@@ -181,7 +183,9 @@ namespace Rimp_India_Site.Admin.Pages
             try
             {
                 Rimp_India_DBEntities context = new Rimp_India_DBEntities();
-                var status = context.SubCategory_Master.Where(x => x.SubCategory_ID == SubCategoryID).Select(y => new { y.Category_ID,
+                var status = context.SubCategory_Master.Where(x => x.SubCategory_ID == SubCategoryID).Select(y => new
+                {
+                    y.Category_ID,
                     y.Category_Master.Category_Name,
                     y.SubCategory_ID,
                     y.SubCategory_Name,
@@ -190,7 +194,8 @@ namespace Rimp_India_Site.Admin.Pages
                     y.Heading,
                     y.Description,
                     y.Page_Image,
-                    y.Page_Image_Name
+                    y.Page_Image_Name,
+                    y.AlterText
                 }).SingleOrDefault();
                 return JsonConvert.SerializeObject(status);
             }
@@ -212,7 +217,7 @@ namespace Rimp_India_Site.Admin.Pages
                 {
                     ImageFile = Convert.FromBase64String(Image);
                 }
-                if(Page_Image != null && !string.IsNullOrEmpty(Page_Image))
+                if (Page_Image != null && !string.IsNullOrEmpty(Page_Image))
                 {
                     PageImage = Convert.FromBase64String(Page_Image);
                 }
@@ -228,6 +233,7 @@ namespace Rimp_India_Site.Admin.Pages
                     SubCat.Description = Description;
                     SubCat.Page_Image = null;
                     SubCat.Page_Image_Name = Page_Image_Name;
+
                     context.SaveChanges();
                 }
                 if (ImageFile != null)

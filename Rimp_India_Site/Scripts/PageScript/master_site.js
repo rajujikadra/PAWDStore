@@ -115,8 +115,8 @@ function CreateMenu() {
     MenuString = '<ul class="navbar-nav"> <li class="nav-item dropdown active"><a href="home" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-name="home">Home</a></li> <li class="nav-item dropdown"><a href="aboutus" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-name="about us">About Us</a></li>';
     for (var i = 0; i < MainMenu.length; i++) {
         if (MainMenu[i].Menu_Name == "Shop by pet") {
-            MenuString += ' <li class="nav-item dropdown dropdown-megamenu-container" id="DivProduct">' +
-                '<a href="#" onmouseover="GetCategoryWithSub(' + MainMenu[i].Menu_ID + ')" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-name="component" >' + MainMenu[i].Menu_Name +
+            MenuString += ' <li onmouseover="GetCategoryWithSub(' + MainMenu[i].Menu_ID + ')" class="nav-item dropdown dropdown-megamenu-container" id="DivProduct">' +
+                '<a href="#"  class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-name="component" >' + MainMenu[i].Menu_Name +
                 '<i class="zmdi zmdi-chevron-down" ></i >' +
                 '</a>' +
                 '<ul class="dropdown-menu dropdown-megamenu animated fadeIn animated-2x">' +
@@ -267,7 +267,7 @@ function GetHomePageProductLists() {
                     '<div class="card-body text-center">' +
                     '<a href="product_list?ID=' + List[m].SubCategory_ID + '" class="product_box"><img src="' + defaultImage + '" alt="' + List[m].ImageName.split('.')[0] + '" class="img-fluid center-block"></a>' +
                     '<h4 class="text-normal text-center product_title">' + List[m].SubCategory_Name + '</h4>' +
-                    '<a href="javascript:void(0)" onclick="SendToSubcategoryPage(\'' + List[m].SubCategory_Name + '\',\'' + List[m].SubCategory_ID + '\')" class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb"><i class="fa fa-info"></i>Inquiry</a>' +
+                    '<a href="product_list?ID=' + List[m].SubCategory_ID + '" class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb"><i class="fa fa-eye"></i>View</a>' +
                     '</div>' +
                     '</div>' +
                     '</div>'

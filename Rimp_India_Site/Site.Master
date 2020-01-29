@@ -202,7 +202,7 @@
             </aside>
             <footer class="ms-footer">
                 <div class="container">
-                    <p>Copyright &copy; Rimp Trading Company 2018</p>
+                    <p>Copyright &copy; PAWD Stores <%= DateTime.Now.Year.ToString() %></p>
                 </div>
             </footer>
             <div class="btn-back-top">

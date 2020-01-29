@@ -18,9 +18,8 @@ namespace Rimp_India_Site.Admin
             try
             {
                 Session["UserName"] = null;
-                Session["Email"] = null;
-                Session["UserID"] = null;
-                Response.RedirectToRoute("AdminLogin", null);
+                Session["User"] = null;
+                Response.RedirectToRoute("home", null);
             }
             catch (Exception ex)
             {
