@@ -328,6 +328,7 @@
     <Content Include="assets\img\meeting.jpg" />
     <Content Include="assets\img\mountain.jpg" />
     <Content Include="assets\img\next.png" />
+    <Content Include="assets\img\No_Image_Available.png" />
     <Content Include="assets\img\owl.video.play.png" />
     <Content Include="assets\img\prev.png" />
     <Content Include="assets\img\rimpicon.png" />
@@ -674,6 +675,7 @@
     <Content Include="Admin\assets\scss\_widgets.scss" />
     <Content Include="Admin\Admin.Master" />
     <Content Include="Login.aspx" />
+    <Content Include="ProductImage\No_Image_Available.png" />
     <Content Include="Register.aspx" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\CHANGES.html" />
@@ -1031,6 +1033,7 @@
     <Content Include="Scripts\PageScript\product_list.js" />
     <Content Include="Scripts\PageScript\product_page.js" />
     <Content Include="WebPages\AboutUs.aspx" />
+    <Content Include="WebPages\Cart.aspx" />
     <Content Include="WebPages\ContactUs.aspx" />
     <Content Include="WebPages\LatestUpdate.aspx" />
     <Content Include="WebPages\Latest_Information.aspx" />
@@ -1391,6 +1394,13 @@
     <Compile Include="WebPages\AboutUs.aspx.designer.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebPages\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebPages\ContactUs.aspx.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1436,7 +1446,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ProductImage\" />
     <Folder Include="SubCategoryHeaderImage\" />
     <Folder Include="SubCategoryImage\" />
   </ItemGroup>

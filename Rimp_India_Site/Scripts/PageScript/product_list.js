@@ -125,7 +125,7 @@ function BindAllProducts(data) {
             '<span class="ms-tag ms-tag-success" style="font-size: 20px;">₹ ' + addCommas(data[i].Product_Price) + '</span>' +
             '</div>' +
             '<a href="javascript:void(0)" onclick="SendToSubcategoryPage(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\')"  class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb">' +
-            ' <i class="fa fa-info"></i>Inquiry</a>' +
+            ' <i class="fa fa-shopping-cart"></i>Add to Cart</a>' +
             '</a>' +
             '</div>' +
             '</div>' +

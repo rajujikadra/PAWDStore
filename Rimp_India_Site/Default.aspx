@@ -1,7 +1,48 @@
 ﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Rimp_India_Site._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <style type="text/css">.product_box{display:block;width:215px;height:144px}.product_box img{width:75%;height:100%}.product_title{height:42px!important;overflow:hidden}.last_pro{margin-top:3px;height:51px;overflow:hidden;width:348px}@media screen and (min-width:320px){.last_pro{width:200px}}@media screen and (min-width:768px){.last_pro{width:300px}}@media screen and (min-width:1024px){.last_pro{width:300px}}</style>
+    <style type="text/css">
+        .product_box {
+            display: block;
+            width: 215px;
+            height: 144px
+        }
+
+            .product_box img {
+                width: 75%;
+                height: 100%
+            }
+
+        .product_title {
+            height: 42px !important;
+            overflow: hidden
+        }
+
+        .last_pro {
+            margin-top: 3px;
+            height: 51px;
+            overflow: hidden;
+            width: 348px
+        }
+
+        @media screen and (min-width:320px) {
+            .last_pro {
+                width: 200px
+            }
+        }
+
+        @media screen and (min-width:768px) {
+            .last_pro {
+                width: 300px
+            }
+        }
+
+        @media screen and (min-width:1024px) {
+            .last_pro {
+                width: 300px
+            }
+        }
+    </style>
     <div id="carousel-example-generic" class="ms-carousel carousel slide" style="margin-top: -40px;">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -41,7 +82,7 @@
             <div class="row color-dark" id="hot_product">
                 <%-- Bind hot product here --%>
             </div>
-        </div>
+        </div>        
         <!-- container -->
     </div>
     <div class="container mt-6">
@@ -61,13 +102,11 @@
             width: 89%;
             margin-top: 55px;
             margin-left: 33px;
-            @media ( i d (max- idth
-                  Set_
-                       eight
-                  width: 84%;         
-        o
-        
-                margin-left: 23px; } }
+            @media ( id (max- idth
+                  Set_eight
+                  width: 84%;
+                margin-left: 23px; } 
+                }
     </style>
 
 </asp:Content>

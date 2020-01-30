@@ -18,11 +18,12 @@ function GetCategory() {
         dataType: "json",
         success: function (res) {
             var AllMenus = JSON.parse(res.d);
-            debugger;
             if (AllMenus != null && AllMenus != undefined) {
                 for (i = 0; i < AllMenus.length; i++) {
                     //if (AllMenus[i].Menu_Name == "Shop by pet")
-                        $("#FilterCat").append($("<option></option>").val(AllMenus[i].Category_ID).html(AllMenus[i].Category_Name));
+                    $("#FilterCat").append($("<option></option>").val(AllMenus[i].Category_ID).html(AllMenus[i].Category_Name));
+
+                    $("#DrdCategory").append($("<option></option>").val(AllMenus[i].Category_ID).html(AllMenus[i].Category_Name));
                 }
             }
         },
@@ -48,7 +49,6 @@ function FilterSubCategory() {
         success: function (res) {
             var AllSubCategory = JSON.parse(res.d);
             if (AllSubCategory != null && AllSubCategory != undefined) {
-                debugger;
                 $("#FilterSubCat").prop("disabled", false);
                 $("#FilterSubCat").empty();
                 $("#FilterSubCat").append($("<option></option>").val("").html("--Select sub category--"));
@@ -110,7 +110,6 @@ function FilterThirdCategory() {
 }
 
 function GetAllThirdCategory() {
-    debugger;
     //$.ajax({
     //    async: false,
     //    type: "POST",
@@ -205,8 +204,13 @@ function InsertThirdCategory() {
     $(".sufee-alert").hide();
     var ThirdCatName = $("#txtThirdCat").val();
     var SubCatID = $("#DrdSubCat").val();
+    var CatID = $("#DrdCategory").val();
     if (ThirdCatName == undefined || ThirdCatName == "") {
         $('#ErrorMsgThirdCat').show();
+        flage = false;
+    }
+    if (CatID == undefined || CatID == "") {
+        $('#ErrorMsgCategory').show();
         flage = false;
     }
     if (SubCatID == undefined || SubCatID == "") {
@@ -275,4 +279,45 @@ function ClearModal() {
 
 function SetMode() {
     ThirdCategoryMode = "add";
+}
+
+function ChangeCategory() {
+    var CategoryID = $("#DrdCategory").val();
+    if (CategoryID != "" && CategoryID != undefined && CategoryID != null) {
+        $.ajax({
+            async: false,
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/Admin/Pages/Product.aspx/GetSubCatByCatID",
+            data: JSON.stringify(
+                {
+                    "Category_ID": CategoryID
+                }),
+            dataType: "json",
+            success: function (res) {
+                var AllSubCat = JSON.parse(res.d);
+                if (AllSubCat.length > 0) {
+                    $("#DrdSubCat").empty();
+                    $("#DrdSubCat").append($("<option></option>").val("").html("--Select sub category--"));
+                    for (i = 0; i < AllSubCat.length; i++) {
+                        $("#DrdSubCat").append($("<option></option>").val(AllSubCat[i].SubCategory_ID).html(AllSubCat[i].SubCategory_Name));
+                    }
+                    $("#DrdSubCat").prop("disabled", false);
+                }
+                else {
+                    $("#DrdSubCat").empty();
+                    $("#DrdSubCat").prop("disabled", true);
+                    $("#DrdSubCat").append($("<option></option>").val("").html("--Select sub category--"));
+                }
+            },
+            error: function (xhr, status, err) {
+                toastr.error(xhr.responseJSON.Message);
+            }
+        });
+    } else {
+        $("#DrdSubCat").val("");
+        $("#DrdSubCat").empty();
+        $("#DrdSubCat").prop("disabled", true);
+        $("#DrdSubCat").append($("<option></option>").val("").html("--Select sub category--"));
+    }
 }

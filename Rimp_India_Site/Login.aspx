@@ -35,7 +35,7 @@
                                 <asp:Label runat="server" id="LoginMessage" CssClass="text-danger"></asp:Label>
                                 <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-raised btn-primary btn-block" />
                                 <p>
-                                    <asp:HyperLink NavigateUrl="~/error" runat="server" ID="RegisterHyperLink">Register as a new user</asp:HyperLink>
+                                    <asp:HyperLink NavigateUrl="~/register" runat="server" ID="RegisterHyperLink">Register as a new user</asp:HyperLink>
                                 </p>
                             </section>
                     </div>

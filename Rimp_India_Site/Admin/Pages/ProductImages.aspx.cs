@@ -91,7 +91,7 @@ namespace Rimp_India_Site.Admin.Pages
                 if (data != null)
                 {
                     byte[] ImageFile = null;
-                    if (Image_binary != null)
+                    if (!string.IsNullOrEmpty(Image_binary) && Image_binary != null)
                     {
                         ImageFile = Convert.FromBase64String(Image_binary);
                     }
@@ -102,7 +102,7 @@ namespace Rimp_India_Site.Admin.Pages
                     context.SaveChanges();
                     if (ImageFile != null)
                     {
-                        string filePath = HttpContext.Current.Server.MapPath(string.Format("~/ProductImage/{0}", Image_name));
+                        string filePath = HttpContext.Current.Server.MapPath(string.Format("~/ProductImage/" + Image_name + ""));
                         File.WriteAllBytes(filePath, ImageFile);
                     }
                     var status = "success";

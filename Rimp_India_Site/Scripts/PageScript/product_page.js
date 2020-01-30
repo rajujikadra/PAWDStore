@@ -19,7 +19,7 @@ function Product_data_bind(product_data) {
             ' <span class="ms-tag ms-tag-success">in stock</span>' +
             '</li>' +
             '</ul>' +
-            ' <a href="javascript:void(0)" onclick="SendToSubcategoryPage(\'' + product_data.Product_Title + '\',\'' + product_data.Product_ID + '\')" class="btn btn-primary btn-block btn-raised mt-2 no-mb"><i class="fa fa-info"></i>Inquiry</a>' +
+            ' <a href="javascript:void(0)" onclick="SendToSubcategoryPage(\'' + product_data.Product_Title + '\',\'' + product_data.Product_ID + '\')" class="btn btn-primary btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
             '</div>';
     }
     $("#bind_product_data").append(bind_product_datas);

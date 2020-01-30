@@ -22,6 +22,12 @@ namespace Rimp_India_Site
 
         protected void Page_Init(object sender, EventArgs e)
         {
+            LoginMenu.Visible = false;
+            UserLoginMenu.Visible = false;
+            if (Session["User"] == null)
+                LoginMenu.Visible = true;
+            else
+                UserLoginMenu.Visible = true;
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];
             Guid requestCookieGuidValue;
@@ -81,7 +87,19 @@ namespace Rimp_India_Site
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
 
-       
+        protected void Logiutbtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Session["UserName"] = null;
+                Session["User"] = null;
+                Response.RedirectToRoute("home", null);
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException;
+            }
+        }
     }
 
 }

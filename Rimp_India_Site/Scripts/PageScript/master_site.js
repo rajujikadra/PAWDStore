@@ -259,13 +259,13 @@ function GetHomePageProductLists() {
             for (var m = 0; m < List.length; m++) {
                 var defaultImage;
                 if (List[m].ImageName != null)
-                    defaultImage = "../SubCategoryImage/" + List[m].ImageName
+                    defaultImage = "../SubCategoryImage/" + List[m].ImageName;
                 else
                     defaultImage = "../ProductImage/No_Image_Available.png";
                 HomePageProductString = '<div class="col-xl-3 col-lg-4 col-sm-6">' +
                     '<div class="card">' +
                     '<div class="card-body text-center">' +
-                    '<a href="product_list?ID=' + List[m].SubCategory_ID + '" class="product_box"><img src="' + defaultImage + '" alt="' + List[m].ImageName.split('.')[0] + '" class="img-fluid center-block"></a>' +
+                    '<a href="product_list?ID=' + List[m].SubCategory_ID + '" class="product_box"><img src="' + defaultImage + '" alt="' + List[m].ImageName.split('.')[0] + '" class="img-fluid center-block" onError="imgError(this);"></a>' +
                     '<h4 class="text-normal text-center product_title">' + List[m].SubCategory_Name + '</h4>' +
                     '<a href="product_list?ID=' + List[m].SubCategory_ID + '" class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb"><i class="fa fa-eye"></i>View</a>' +
                     '</div>' +
@@ -502,9 +502,9 @@ function get_all_hotProducts() {
                     hot_product_string += '<div class="col-lg-4 col-md-6">' +
                         '<div class="card wow zoomInUp" style="height: 530px;">' +
                         '<div class="card-body text-center" style="height: 100%;">' +
-                        '<a href="product?ID=' + data[i].Product_ID + '"><img style="height: 52%;" alt="" src="' + image_str + '" class="img-fluid center-block"></a>' +
-                        '<h4 class="text-normal text-center">' + data[i].Product_Title + '</h4>' +
-                        '<p style="overflow: hidden;height: 80px;">' + data[i].Product_short_description + '</p>' +
+                        '<a href="product?ID=' + data[i].Product_ID + '"><img onError="imgError(this);" style="height: 52%;" alt="" src="' + image_str + '" class="img-fluid center-block"></a>' +
+                        '<h4 class="text-normal text-center"  style="height: 42px; overflow: hidden;">' + data[i].Product_Title + '</h4>' +
+                        '<p style="overflow: hidden;height: 54px;">' + data[i].Product_short_description + '</p>' +
                         '<div class="mt-2"><span class="ms-tag ms-tag-success" style="font-size: 20px;">₹ ' + addCommas(data[i].Product_Price) + '</span></div>' +
                         '<a href="javascript:void(0)" onclick="SendToSubcategoryPage(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\')" class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
                         '</div>' +
@@ -518,4 +518,9 @@ function get_all_hotProducts() {
             toastr.error(xhr.responseJSON.Message);
         }
     });
+}
+function imgError(image) {
+    image.onerror = "";
+    image.src = "../assets/img/No_Image_Available.png";
+    return true;
 }

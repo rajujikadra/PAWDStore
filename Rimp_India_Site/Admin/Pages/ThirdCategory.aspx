@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminDashboard" runat="server">
     <script src="../Admin/Scripts/third_category.js"></script>
-     <div class="animated">
+    <div class="animated">
         <div class="card">
             <div class="card-header">
                 <i class="mr-2 fa fa-align-justify"></i>
@@ -43,7 +43,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Third Category Name</th>
-                                                        <th>Sub Category Name</th>                                                        
+                                                        <th>Sub Category Name</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -74,12 +74,20 @@
                                     Please enter Category.
                                 </div>
                             </div>
-                            <select class="form-control" id="DrdSubCat">
+                            <select class="form-control" id="DrdCategory" onchange="ChangeCategory()">
+                                <option value="">--Select Category--</option>
+                            </select>
+                            <div id="ErrorMsgCategory" class="sufee-alert alert with-close alert-danger alert-dismissible fade show" style="display: none;">
+                                <span class="badge badge-pill badge-danger"></span>
+                                Please select category.
+                            </div>
+                            <br />
+                            <select class="form-control" id="DrdSubCat" disabled>
                                 <option value="">--Select Sub Category--</option>
                             </select>
                             <div id="ErrorMsgSubCatDrp" class="sufee-alert alert with-close alert-danger alert-dismissible fade show" style="display: none;">
                                 <span class="badge badge-pill badge-danger"></span>
-                                Please enter Sub Category.
+                                Please select sub category.
                             </div>
                             <br />
                         </div>

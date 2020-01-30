@@ -203,6 +203,11 @@ function InsertProduct() {
         $('#ErrorMsgSubCatDrp').show();
         flage = false;
     }
+    //DrdThirdCat
+    if (Third_category == undefined || Third_category == "") {
+        $('#ErrorMsgThirdCatDrp').show();
+        flage = false;
+    }
     if (Price == undefined || Price == "") {
         $('#ErrorMsgProPrice').show();
         flage = false;
