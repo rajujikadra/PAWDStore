@@ -1446,6 +1446,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="SQLScript\" />
     <Folder Include="SubCategoryHeaderImage\" />
     <Folder Include="SubCategoryImage\" />
   </ItemGroup>
