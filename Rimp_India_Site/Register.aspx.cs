@@ -34,7 +34,8 @@ namespace Rimp_India_Site
                             EmailID = Email.Text.Trim(),
                             IsAdmin = false,
                             Password = Password.Text,
-                            UserName = Name.Text.Trim()
+                            UserName = Name.Text.Trim(),
+                            JoinDate = DateTime.Now
                         };
                         context.AdminLoginMasters.Add(obj);
                         context.SaveChanges();

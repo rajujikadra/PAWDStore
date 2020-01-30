@@ -14,6 +14,7 @@
           <Property Name="Password" Type="varchar" MaxLength="150" />
           <Property Name="UserName" Type="varchar" MaxLength="50" />
           <Property Name="IsAdmin" Type="bit" Nullable="false" />
+          <Property Name="JoinDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Category_Master">
           <Key>
@@ -141,6 +142,18 @@
           <Property Name="ThirdCategory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubCategory_ID" Type="int" />
           <Property Name="ThirdCategory_Name" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="UserDetails_Master">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="150" />
+          <Property Name="LastName" Type="varchar" MaxLength="150" />
+          <Property Name="User_Id" Type="int" />
+          <Property Name="WebSite" Type="varchar" MaxLength="550" />
+          <Property Name="ProfilePhoto" Type="varchar" MaxLength="150" />
+          <Property Name="Bio" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_Cat_ID">
           <End Role="Category_Master" Type="Self.Category_Master" Multiplicity="0..1" />
@@ -286,6 +299,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User">
+          <End Role="AdminLoginMaster" Type="Self.AdminLoginMaster" Multiplicity="0..1" />
+          <End Role="UserDetails_Master" Type="Self.UserDetails_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminLoginMaster">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="UserDetails_Master">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="CategoryInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Category_Name" Type="varchar" Mode="In" />
           <Parameter Name="Menu_ID" Type="int" Mode="In" />
@@ -403,6 +428,7 @@
           <EntitySet Name="SubCategory_Master" EntityType="Self.SubCategory_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subscribe_Master" EntityType="Self.Subscribe_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThirdCategory_Master" EntityType="Self.ThirdCategory_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails_Master" EntityType="Self.UserDetails_Master" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Cat_ID" Association="Self.FK_Cat_ID">
             <End Role="Category_Master" EntitySet="Category_Master" />
             <End Role="Product_Master" EntitySet="Product_Master" />
@@ -450,6 +476,10 @@
           <AssociationSet Name="FK_Third_Cat_ID" Association="Self.FK_Third_Cat_ID">
             <End Role="ThirdCategory_Master" EntitySet="ThirdCategory_Master" />
             <End Role="Product_Master" EntitySet="Product_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User" Association="Self.FK_User">
+            <End Role="AdminLoginMaster" EntitySet="AdminLoginMaster" />
+            <End Role="UserDetails_Master" EntitySet="UserDetails_Master" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -647,6 +677,11 @@
             <Parameter Name="Page_Image_Name" Mode="In" Type="String" />
             <Parameter Name="AlterText" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="UserDetails_Master" EntityType="Rimp_India_DBModel.UserDetails_Master" />
+          <AssociationSet Name="FK_User" Association="Rimp_India_DBModel.FK_User">
+            <End Role="AdminLoginMaster" EntitySet="AdminLoginMasters" />
+            <End Role="UserDetails_Master" EntitySet="UserDetails_Master" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="RGetCategory_Result">
           <Property Type="Int32" Name="Category_ID" Nullable="false" />
@@ -672,6 +707,8 @@
           <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="JoinDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UserDetails_Master" Relationship="Rimp_India_DBModel.FK_User" FromRole="AdminLoginMaster" ToRole="UserDetails_Master" />
         </EntityType>
         <ComplexType Name="RGetSubCategory_Result1">
           <Property Type="Int32" Name="SubCategory_ID" Nullable="false" />
@@ -1162,6 +1199,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserDetails_Master">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="User_Id" Type="Int32" />
+          <Property Name="WebSite" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePhoto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AdminLoginMaster" Relationship="Rimp_India_DBModel.FK_User" FromRole="UserDetails_Master" ToRole="AdminLoginMaster" />
+        </EntityType>
+        <Association Name="FK_User">
+          <End Type="Rimp_India_DBModel.AdminLoginMaster" Role="AdminLoginMaster" Multiplicity="0..1" />
+          <End Type="Rimp_India_DBModel.UserDetails_Master" Role="UserDetails_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminLoginMaster">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="UserDetails_Master">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1203,6 +1265,7 @@
           <EntitySetMapping Name="AdminLoginMasters">
             <EntityTypeMapping TypeName="Rimp_India_DBModel.AdminLoginMaster">
               <MappingFragment StoreEntitySet="AdminLoginMaster">
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
                 <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -1530,6 +1593,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SubCategoryInsert" FunctionName="Rimp_India_DBModel.Store.SubCategoryInsert" />
+          <EntitySetMapping Name="UserDetails_Master">
+            <EntityTypeMapping TypeName="Rimp_India_DBModel.UserDetails_Master">
+              <MappingFragment StoreEntitySet="UserDetails_Master">
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+                <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

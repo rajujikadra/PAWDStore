@@ -30,6 +30,8 @@
         <AssociationConnector Association="Rimp_India_DBModel.FK_Category_ID" />
         <AssociationConnector Association="Rimp_India_DBModel.FK_Sub_Cat_ID" />
         <AssociationConnector Association="Rimp_India_DBModel.FK_SubCategory" />
+        <EntityTypeShape EntityType="Rimp_India_DBModel.UserDetails_Master" Width="1.5" PointX="3.75" PointY="16.5" />
+        <AssociationConnector Association="Rimp_India_DBModel.FK_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

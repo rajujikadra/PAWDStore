@@ -21,7 +21,7 @@
     <meta name="description" content="Material Style Theme">
     <link rel="shortcut icon" href="../assets/img/rimpicon.png">
 
-    <%--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">--%>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../assets/css/preload.min.css">
     <link rel="stylesheet" href="../assets/css/plugins.min.css">
     <link rel="stylesheet" href="../assets/css/style.light-blue-500.min.css">
@@ -180,7 +180,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="<%: GetRouteUrl("profile", null) %>">My Profile</a>
                                     <div class="dropdown-divider"></div>
                                     <asp:LinkButton ID="Logiutbtn" runat="server" OnClick="Logiutbtn_Click" CssClass="nav-link">Logout</asp:LinkButton>
                                 </div>

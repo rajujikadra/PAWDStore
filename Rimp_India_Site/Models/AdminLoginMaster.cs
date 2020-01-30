@@ -14,10 +14,20 @@ namespace Rimp_India_Site.Models
     
     public partial class AdminLoginMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AdminLoginMaster()
+        {
+            this.UserDetails_Master = new HashSet<UserDetails_Master>();
+        }
+    
         public int User_ID { get; set; }
         public string EmailID { get; set; }
         public string Password { get; set; }
         public string UserName { get; set; }
         public bool IsAdmin { get; set; }
+        public Nullable<System.DateTime> JoinDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserDetails_Master> UserDetails_Master { get; set; }
     }
 }

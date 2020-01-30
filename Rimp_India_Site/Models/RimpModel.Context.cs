@@ -40,6 +40,7 @@ namespace Rimp_India_Site.Models
         public virtual DbSet<Email_Group_Master> Email_Group_Master { get; set; }
         public virtual DbSet<Subscribe_Master> Subscribe_Master { get; set; }
         public virtual DbSet<SubCategory_Master> SubCategory_Master { get; set; }
+        public virtual DbSet<UserDetails_Master> UserDetails_Master { get; set; }
     
         public virtual ObjectResult<RGetCategory_Result> RGetCategory()
         {
