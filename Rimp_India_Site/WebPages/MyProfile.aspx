@@ -11,7 +11,7 @@
                             <div class="ms-hero-bg-primary ms-hero-img-coffee">
                                 <h3 class="color-white index-1 text-center no-m pt-4" id="MainHeading">Victoria Smith</h3>
                                 <div class="color-medium index-1 text-center np-m" id="MainUsrHeading">@vic_smith</div>
-                                <img id="userImg"  src="../assets/img/demo/avatar1.jpg" alt="..." class="img-avatar-circle">
+                                <img id="userImg"  src="../assets/img/demo/avatar1.jpg" alt="..." class="img-avatar-circle"  onerror="this.src='../assets/img/No_Image_Available.png'" />
                             </div>
                             <div class="card-body pt-4 text-center">
                                 <h3 class="color-primary">Bio</h3>
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-12 order-md-3 order-lg-2">
-                        <a onclick="hide_show_div();" class="btn btn-warning btn-raised btn-block animated fadeInUp animation-delay-12 fa-i-cursor">
+                        <a onclick="hide_show_div();" class="btn btn-warning btn-raised btn-block animated fadeInUp animation-delay-12">
                             <i class="zmdi zmdi-edit"></i>Edit Profile</a>
                     </div>
                 </div>
@@ -102,33 +102,37 @@
                                 <div class="form-group row">
                                     <label for="inputEmail" autocomplete="false" class="col-lg-2 control-label">First Name</label>
                                     <div class="col-lg-9">
-                                        <input type="text" class="form-control" id="inputName" placeholder="First name">
+                                        <input type="text" class="form-control" id="txtFname" placeholder="First name" />
+                                        <span class="text-danger" id="errorFName"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" autocomplete="false" class="col-lg-2 control-label">Last Name</label>
                                     <div class="col-lg-9">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Last name">
+                                        <input type="email" class="form-control" id="txtLName" placeholder="Last name" />
+                                        <span class="text-danger" id="errorLName"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" autocomplete="false" class="col-lg-2 control-label">Website</label>
                                     <div class="col-lg-9">
-                                        <input type="text" class="form-control" id="inputSubject" placeholder="Website">
+                                        <input type="text" class="form-control" id="txtWebsite" placeholder="Website" />
+                                        <span class="text-danger" id="errorWebsite"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="textArea" class="col-lg-2 control-label">Bio</label>
                                     <div class="col-lg-9">
-                                        <textarea class="form-control" rows="3" id="textArea" placeholder="Yout bio..."></textarea>
+                                        <textarea class="form-control" rows="3" id="txtBio" placeholder="Yout bio..."></textarea>
+                                        <span class="text-danger" id="errorBio"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="textArea" class="col-lg-2 control-label">Phpto</label>
                                     <div class="col-lg-9">
-                                        <input type="file" id="file" />
+                                        <input type="file" id="uploadImage" onchange="fnFileUpload(this)"/>
                                         <div class="input-group">
-                                            <input type="text" readonly="" class="form-control" placeholder="Placeholder w/file chooser...">
+                                            <input id="txtImageName" type="text" readonly="" class="form-control" placeholder="Placeholder w/file chooser..." />
                                             <span class="input-group-btn input-group-sm">
                                                 <button type="button" class="btn btn-fab btn-fab-mini">
                                                     <i class="material-icons">attach_file</i>
@@ -139,7 +143,7 @@
                                 </div>
                                 <div class="form-group row justify-content-end">
                                     <div class="col-lg-10">
-                                        <button type="submit" class="btn btn-raised btn-primary">Submit</button>
+                                        <button type="button" onclick="AddUserDetails();" class="btn btn-raised btn-primary">Submit</button>
                                         <button type="button" class="btn btn-danger" onclick="ShowDetailDiv()">Cancel</button>
                                     </div>
                                 </div>

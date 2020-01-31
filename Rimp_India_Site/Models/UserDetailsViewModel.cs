@@ -17,5 +17,6 @@ namespace Rimp_India_Site.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName { get; set; }
+        public string Image_binary { get; set; }
     }
 }
