@@ -28,6 +28,7 @@
     <link href="../Content/toastr.min.css" rel="stylesheet" />
     <link href="../Content/jquery-ui.css" rel="stylesheet" />
     <link href="../Content/sweet-alert.css" rel="stylesheet" />
+    <link href="../assets/css/HoldOn.css" rel="stylesheet" />
     <style type="text/css">
         .last_pro {
             width: 348px;
@@ -135,6 +136,9 @@
         .custom-nav .user-login-menu a:hover,.custom-nav .user-login-menu.show a{
             background-color:#fff;
             color:#03a9f4 !important;
+        }
+        .swal-button--confirm{
+            background-color : #03a9f4 !important;
         }
     </style>
 </head>
@@ -437,6 +441,7 @@
         <script src="../assets/js/ecommerce.js"></script>
         <script src="../Scripts/toastr.min.js"></script>
         <script src="../Scripts/sweetalert.min.js"></script>
+        <script src="../assets/js/HoldOn.js"></script>
         <script src="<%= ResolveUrl("~/Scripts/PageScript/master_site.js") %>"></script>
     </form>
 </body>

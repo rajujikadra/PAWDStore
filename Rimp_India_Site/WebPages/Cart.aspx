@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Cart" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="Rimp_India_Site.WebPages.Cart" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="../Scripts/PageScript/cart.js"></script>
     <style>
         .ImageClass {
             border: 1px solid #ddd;
@@ -17,22 +18,7 @@
                     <table class="table table-responsive table-no-border vertical-center">
                         <tr>
                             <td class="d-none d-sm-block">
-                                <img class="ImageClass" src="../SubCategoryImage/CatFood.jpg" alt="" />
-                            </td>
-                            <td>
-                                <h4 class="">Macbook Pro 2016 13" with Touch Bar</h4>
-                            </td>
-                            <td>
-                                <div class="form-inline input-number">
-                                    <input id="txtQty" type="text" class="form-control form-control-number" value="1" />
-                                </div>
-                            </td>
-                            <td>
-                                <span class="color-primary">$1999.99</span>
-                            </td>
-                            <td class="d-none d-sm-block">
-                                <button class="btn btn-danger">
-                                    <i class="zmdi zmdi-delete"></i>Delete</button>
+                                Your cart is empty.
                             </td>
                         </tr>
                     </table>

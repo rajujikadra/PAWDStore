@@ -19,6 +19,7 @@ $(document).ready(function () {
     GetAllSubCategoryWithCategory();
     GetHomePageProductLists();
     Get_Information();
+    GetCartItemCount();
     set_solution_side_menu(MainMenu, CategoryWithMenu);
     get_all_hotProducts();
 
@@ -126,7 +127,7 @@ function CreateMenu() {
                 '</li>' +
                 '</ul>' +
                 '</li>';
-        } 
+        }
         else {
             MenuString += ' <li class="nav-item dropdown" id="DivOther">' +
                 '<a href="#" onmouseover="GetCategoryWithSub(' + MainMenu[i].Menu_ID + ')" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-name="page" >' +
@@ -506,7 +507,7 @@ function get_all_hotProducts() {
                         '<h4 class="text-normal text-center"  style="height: 42px; overflow: hidden;">' + data[i].Product_Title + '</h4>' +
                         '<p style="overflow: hidden;height: 54px;">' + data[i].Product_short_description + '</p>' +
                         '<div class="mt-2"><span class="ms-tag ms-tag-success" style="font-size: 20px;">₹ ' + addCommas(data[i].Product_Price) + '</span></div>' +
-                        '<a href="javascript:void(0)" onclick="SendToSubcategoryPage(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\')" class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
+                        '<a href="javascript:void(0)" onclick="AddToCart(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\')" class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
                         '</div>' +
                         '</div>' +
                         '</div>';
@@ -523,4 +524,91 @@ function imgError(image) {
     image.onerror = "";
     image.src = "../assets/img/No_Image_Available.png";
     return true;
+}
+
+function CheckUserLoginOrNot() {
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "/Default.aspx/CheckUserLoginOrNot",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        beforeSend: function () {
+            HoldOn.open();
+        },
+        complete: function () {
+            HoldOn.close();
+        },
+        success: function (result) {
+            return JSON.parse(result.d);
+        },
+        error: function (response) {
+            IsValid = false;
+        }
+    });
+}
+
+function AddToCart(Title, ProductID) {
+    swal({
+        title: Title,
+        text: "Are you sure you want to add this product in cart ?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: false
+    }).then(function (willDelete) {
+        if (willDelete) {
+            HoldOn.open();
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/Default.aspx/CheckUserLoginOrNot",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var status = JSON.parse(result.d);
+                    if (status == true) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Default.aspx/AddToCart",
+                            data: JSON.stringify({ Product_ID: ProductID }),
+                            async: false,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (result) {
+                                var CartItemCount = JSON.parse(result.d);
+                                $("#CartItemCount").text(CartItemCount);
+                                swal("Success", "Product has been added in cart", "success");
+                                HoldOn.close();
+                            },
+                            error: function (response) {
+                                IsValid = false;
+                            }
+                        });
+                    } else {
+                        location.href = '/login';
+                    }
+                },
+                error: function (response) {
+                    IsValid = false;
+                }
+            });
+        }
+    });
+}
+
+function GetCartItemCount() {
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "/Default.aspx/GetCartItemCount",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var CartItemCount = JSON.parse(result.d);
+            $("#CartItemCount").text(CartItemCount);
+        },
+        error: function (response) {
+            IsValid = false;
+        }
+    });
 }

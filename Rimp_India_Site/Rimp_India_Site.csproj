@@ -294,6 +294,7 @@
     <Content Include="assets\bannerfinal\Banner3.jpg" />
     <Content Include="assets\bannerfinal\banner4.jpg" />
     <Content Include="assets\bannerfinal\PAWDSTORE.jpg" />
+    <Content Include="assets\css\HoldOn.css" />
     <Content Include="assets\css\plugins.min.css" />
     <Content Include="assets\css\preload.min.css" />
     <Content Include="assets\css\style.light-blue-300.min.css" />
@@ -346,6 +347,7 @@
     <Content Include="assets\js\component-snackbar.js" />
     <Content Include="assets\js\configurator.min.js" />
     <Content Include="assets\js\ecommerce.js" />
+    <Content Include="assets\js\HoldOn.js" />
     <Content Include="assets\js\home-cv-landing.js" />
     <Content Include="assets\js\home-cv.js" />
     <Content Include="assets\js\home-generic-3.js" />
@@ -1031,6 +1033,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\PageScript\cart.js" />
     <Content Include="Scripts\PageScript\contact_us.js" />
     <Content Include="Scripts\PageScript\product_list.js" />
     <Content Include="Scripts\PageScript\product_page.js" />
@@ -1255,6 +1258,7 @@
     <Compile Include="Models\AdminLoginMaster.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\Cart_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>

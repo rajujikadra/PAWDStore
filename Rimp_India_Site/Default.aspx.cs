@@ -186,5 +186,51 @@ namespace Rimp_India_Site
                 throw ex.InnerException;
             }
         }
+
+        [WebMethod]
+        public static string CheckUserLoginOrNot()
+        {
+            if (HttpContext.Current.Session["User"] != null)
+                return JsonConvert.SerializeObject(true);
+            return JsonConvert.SerializeObject(false);
+        }
+        [WebMethod]
+        public static string AddToCart(int Product_ID)
+        {
+            Rimp_India_DBEntities context = new Rimp_India_DBEntities();
+            int User_ID = (HttpContext.Current.Session["User"] as AdminLoginMaster).User_ID;
+            var IsThereInCart = context.Cart_Master.FirstOrDefault(x => x.User_ID == User_ID && x.Product_ID == Product_ID);
+            if (IsThereInCart == null)
+            {
+                var obj = new Cart_Master
+                {
+                    Product_ID = Product_ID,
+                    User_ID = User_ID,
+                    Quantity = 1,
+                    CreatedDate = DateTime.Now
+                };
+                context.Cart_Master.Add(obj);
+                context.SaveChanges();
+            }
+            else
+            {
+                IsThereInCart.Quantity = IsThereInCart.Quantity + 1;
+                context.SaveChanges();
+            }
+            int CartItemCount = context.Cart_Master.Count(x => x.User_ID == User_ID);
+            return JsonConvert.SerializeObject(CartItemCount);
+        }
+        [WebMethod]
+        public static string GetCartItemCount()
+        {
+            if (HttpContext.Current.Session["User"] != null)
+            {
+                Rimp_India_DBEntities context = new Rimp_India_DBEntities();
+                int UserID = (HttpContext.Current.Session["User"] as AdminLoginMaster).User_ID;
+                int count = context.Cart_Master.Count(x => x.User_ID == UserID);
+                return JsonConvert.SerializeObject(count);
+            }
+            return JsonConvert.SerializeObject(0);
+        }
     }
 }
