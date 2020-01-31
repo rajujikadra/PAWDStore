@@ -365,6 +365,7 @@
     <Content Include="Content\dataTables.jqueryui.min.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\sweet-alert.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Error.aspx" />
@@ -1033,6 +1034,7 @@
     <Content Include="Scripts\PageScript\contact_us.js" />
     <Content Include="Scripts\PageScript\product_list.js" />
     <Content Include="Scripts\PageScript\product_page.js" />
+    <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="WebPages\AboutUs.aspx" />
     <Content Include="WebPages\Cart.aspx" />
     <Content Include="WebPages\ContactUs.aspx" />
@@ -1253,6 +1255,9 @@
     <Compile Include="Models\AdminLoginMaster.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart_Master.cs">
+      <DependentUpon>RimpModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
@@ -1309,6 +1314,12 @@
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MainMenu_Master.cs">
+      <DependentUpon>RimpModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Item_Master.cs">
+      <DependentUpon>RimpModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product_CK_Master.cs">

@@ -76,7 +76,7 @@
                             <th>
                                 <i class="zmdi zmdi-link mr-1 color-info"></i>Website</th>
                             <td id="usrWebsite">
-                                <a href="#">www.example.com</a>
+                                
                             </td>
                         </tr>
                         <tr>

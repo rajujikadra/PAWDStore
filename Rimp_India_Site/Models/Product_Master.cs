@@ -21,6 +21,8 @@ namespace Rimp_India_Site.Models
             this.Product_Image_Master = new HashSet<Product_Image_Master>();
             this.Specification_Group_Master = new HashSet<Specification_Group_Master>();
             this.Product_Specification_Master = new HashSet<Product_Specification_Master>();
+            this.Cart_Master = new HashSet<Cart_Master>();
+            this.Order_Item_Master = new HashSet<Order_Item_Master>();
         }
     
         public int Product_ID { get; set; }
@@ -46,5 +48,9 @@ namespace Rimp_India_Site.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product_Specification_Master> Product_Specification_Master { get; set; }
         public virtual SubCategory_Master SubCategory_Master { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart_Master> Cart_Master { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order_Item_Master> Order_Item_Master { get; set; }
     }
 }

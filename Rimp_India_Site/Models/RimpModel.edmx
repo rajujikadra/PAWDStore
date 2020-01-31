@@ -16,6 +16,16 @@
           <Property Name="IsAdmin" Type="bit" Nullable="false" />
           <Property Name="JoinDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Cart_Master">
+          <Key>
+            <PropertyRef Name="Cart_ID" />
+          </Key>
+          <Property Name="Cart_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Product_ID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Category_Master">
           <Key>
             <PropertyRef Name="Category_ID" />
@@ -48,6 +58,26 @@
           <Property Name="Menu_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Menu_Name" Type="varchar" MaxLength="150" />
           <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Order_Item_Master">
+          <Key>
+            <PropertyRef Name="Order_Item_ID" />
+          </Key>
+          <Property Name="Order_Item_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order_ID" Type="int" />
+          <Property Name="Product_ID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Order_Master">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order_No" Type="varchar" MaxLength="50" />
+          <Property Name="Order_Type" Type="varchar" MaxLength="20" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Order_Status" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Product_CK_Master">
           <Key>
@@ -203,6 +233,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderRef">
+          <End Role="Order_Master" Type="Self.Order_Master" Multiplicity="0..1" />
+          <End Role="Order_Item_Master" Type="Self.Order_Item_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_Master">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Order_Item_Master">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_CK_Editor">
           <End Role="Product_Master" Type="Self.Product_Master" Multiplicity="0..1" />
           <End Role="Product_CK_Master" Type="Self.Product_CK_Master" Multiplicity="*" />
@@ -247,6 +289,30 @@
               <PropertyRef Name="Product_ID" />
             </Principal>
             <Dependent Role="Product_Specification_Master">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductKey">
+          <End Role="Product_Master" Type="Self.Product_Master" Multiplicity="0..1" />
+          <End Role="Cart_Master" Type="Self.Cart_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Master">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Cart_Master">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRefe">
+          <End Role="Product_Master" Type="Self.Product_Master" Multiplicity="0..1" />
+          <End Role="Order_Item_Master" Type="Self.Order_Item_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Master">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Order_Item_Master">
               <PropertyRef Name="Product_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -308,6 +374,30 @@
             </Principal>
             <Dependent Role="UserDetails_Master">
               <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserKey">
+          <End Role="AdminLoginMaster" Type="Self.AdminLoginMaster" Multiplicity="0..1" />
+          <End Role="Cart_Master" Type="Self.Cart_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminLoginMaster">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Cart_Master">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRef">
+          <End Role="AdminLoginMaster" Type="Self.AdminLoginMaster" Multiplicity="0..1" />
+          <End Role="Order_Master" Type="Self.Order_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminLoginMaster">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Order_Master">
+              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -416,10 +506,13 @@
         </Function>
         <EntityContainer Name="Rimp_India_DBModelStoreContainer">
           <EntitySet Name="AdminLoginMaster" EntityType="Self.AdminLoginMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart_Master" EntityType="Self.Cart_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category_Master" EntityType="Self.Category_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Email_Group_Master" EntityType="Self.Email_Group_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Information_Master" EntityType="Self.Information_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainMenu_Master" EntityType="Self.MainMenu_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Item_Master" EntityType="Self.Order_Item_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Master" EntityType="Self.Order_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_CK_Master" EntityType="Self.Product_CK_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_Image_Master" EntityType="Self.Product_Image_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_Master" EntityType="Self.Product_Master" Schema="dbo" store:Type="Tables" />
@@ -445,6 +538,10 @@
             <End Role="MainMenu_Master" EntitySet="MainMenu_Master" />
             <End Role="Category_Master" EntitySet="Category_Master" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrderRef" Association="Self.FK_OrderRef">
+            <End Role="Order_Master" EntitySet="Order_Master" />
+            <End Role="Order_Item_Master" EntitySet="Order_Item_Master" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_CK_Editor" Association="Self.FK_Product_CK_Editor">
             <End Role="Product_Master" EntitySet="Product_Master" />
             <End Role="Product_CK_Master" EntitySet="Product_CK_Master" />
@@ -460,6 +557,14 @@
           <AssociationSet Name="FK_ProductID" Association="Self.FK_ProductID">
             <End Role="Product_Master" EntitySet="Product_Master" />
             <End Role="Product_Specification_Master" EntitySet="Product_Specification_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductKey" Association="Self.FK_ProductKey">
+            <End Role="Product_Master" EntitySet="Product_Master" />
+            <End Role="Cart_Master" EntitySet="Cart_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRefe" Association="Self.FK_ProductRefe">
+            <End Role="Product_Master" EntitySet="Product_Master" />
+            <End Role="Order_Item_Master" EntitySet="Order_Item_Master" />
           </AssociationSet>
           <AssociationSet Name="FK_specification_groupID" Association="Self.FK_specification_groupID">
             <End Role="Specification_Group_Master" EntitySet="Specification_Group_Master" />
@@ -480,6 +585,14 @@
           <AssociationSet Name="FK_User" Association="Self.FK_User">
             <End Role="AdminLoginMaster" EntitySet="AdminLoginMaster" />
             <End Role="UserDetails_Master" EntitySet="UserDetails_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserKey" Association="Self.FK_UserKey">
+            <End Role="AdminLoginMaster" EntitySet="AdminLoginMaster" />
+            <End Role="Cart_Master" EntitySet="Cart_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRef" Association="Self.FK_UserRef">
+            <End Role="AdminLoginMaster" EntitySet="AdminLoginMaster" />
+            <End Role="Order_Master" EntitySet="Order_Master" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -682,6 +795,29 @@
             <End Role="AdminLoginMaster" EntitySet="AdminLoginMasters" />
             <End Role="UserDetails_Master" EntitySet="UserDetails_Master" />
           </AssociationSet>
+          <EntitySet Name="Cart_Master" EntityType="Rimp_India_DBModel.Cart_Master" />
+          <EntitySet Name="Order_Item_Master" EntityType="Rimp_India_DBModel.Order_Item_Master" />
+          <EntitySet Name="Order_Master" EntityType="Rimp_India_DBModel.Order_Master" />
+          <AssociationSet Name="FK_UserKey" Association="Rimp_India_DBModel.FK_UserKey">
+            <End Role="AdminLoginMaster" EntitySet="AdminLoginMasters" />
+            <End Role="Cart_Master" EntitySet="Cart_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRef" Association="Rimp_India_DBModel.FK_UserRef">
+            <End Role="AdminLoginMaster" EntitySet="AdminLoginMasters" />
+            <End Role="Order_Master" EntitySet="Order_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductKey" Association="Rimp_India_DBModel.FK_ProductKey">
+            <End Role="Product_Master" EntitySet="Product_Master" />
+            <End Role="Cart_Master" EntitySet="Cart_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderRef" Association="Rimp_India_DBModel.FK_OrderRef">
+            <End Role="Order_Master" EntitySet="Order_Master" />
+            <End Role="Order_Item_Master" EntitySet="Order_Item_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRefe" Association="Rimp_India_DBModel.FK_ProductRefe">
+            <End Role="Product_Master" EntitySet="Product_Master" />
+            <End Role="Order_Item_Master" EntitySet="Order_Item_Master" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="RGetCategory_Result">
           <Property Type="Int32" Name="Category_ID" Nullable="false" />
@@ -709,6 +845,8 @@
           <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
           <Property Name="JoinDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="UserDetails_Master" Relationship="Rimp_India_DBModel.FK_User" FromRole="AdminLoginMaster" ToRole="UserDetails_Master" />
+          <NavigationProperty Name="Cart_Master" Relationship="Rimp_India_DBModel.FK_UserKey" FromRole="AdminLoginMaster" ToRole="Cart_Master" />
+          <NavigationProperty Name="Order_Master" Relationship="Rimp_India_DBModel.FK_UserRef" FromRole="AdminLoginMaster" ToRole="Order_Master" />
         </EntityType>
         <ComplexType Name="RGetSubCategory_Result1">
           <Property Type="Int32" Name="SubCategory_ID" Nullable="false" />
@@ -905,6 +1043,8 @@
           <NavigationProperty Name="Specification_Group_Master" Relationship="Rimp_India_DBModel.FK_product_id" FromRole="Product_Master" ToRole="Specification_Group_Master" />
           <NavigationProperty Name="Product_Specification_Master" Relationship="Rimp_India_DBModel.FK_ProductID" FromRole="Product_Master" ToRole="Product_Specification_Master" />
           <NavigationProperty Name="SubCategory_Master" Relationship="Rimp_India_DBModel.FK_Sub_Cat_ID" FromRole="Product_Master" ToRole="SubCategory_Master" />
+          <NavigationProperty Name="Cart_Master" Relationship="Rimp_India_DBModel.FK_ProductKey" FromRole="Product_Master" ToRole="Cart_Master" />
+          <NavigationProperty Name="Order_Item_Master" Relationship="Rimp_India_DBModel.FK_ProductRefe" FromRole="Product_Master" ToRole="Order_Item_Master" />
           </EntityType>
         <Association Name="FK_Cat_ID">
           <End Type="Rimp_India_DBModel.Category_Master" Role="Category_Master" Multiplicity="0..1" />
@@ -1221,6 +1361,102 @@
             </Principal>
             <Dependent Role="UserDetails_Master">
               <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cart_Master">
+          <Key>
+            <PropertyRef Name="Cart_ID" />
+          </Key>
+          <Property Name="Cart_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Product_ID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AdminLoginMaster" Relationship="Rimp_India_DBModel.FK_UserKey" FromRole="Cart_Master" ToRole="AdminLoginMaster" />
+          <NavigationProperty Name="Product_Master" Relationship="Rimp_India_DBModel.FK_ProductKey" FromRole="Cart_Master" ToRole="Product_Master" />
+        </EntityType>
+        <EntityType Name="Order_Item_Master">
+          <Key>
+            <PropertyRef Name="Order_Item_ID" />
+          </Key>
+          <Property Name="Order_Item_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_ID" Type="Int32" />
+          <Property Name="Product_ID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Order_Master" Relationship="Rimp_India_DBModel.FK_OrderRef" FromRole="Order_Item_Master" ToRole="Order_Master" />
+          <NavigationProperty Name="Product_Master" Relationship="Rimp_India_DBModel.FK_ProductRefe" FromRole="Order_Item_Master" ToRole="Product_Master" />
+        </EntityType>
+        <EntityType Name="Order_Master">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Order_Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Order_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AdminLoginMaster" Relationship="Rimp_India_DBModel.FK_UserRef" FromRole="Order_Master" ToRole="AdminLoginMaster" />
+          <NavigationProperty Name="Order_Item_Master" Relationship="Rimp_India_DBModel.FK_OrderRef" FromRole="Order_Master" ToRole="Order_Item_Master" />
+        </EntityType>
+        <Association Name="FK_UserKey">
+          <End Type="Rimp_India_DBModel.AdminLoginMaster" Role="AdminLoginMaster" Multiplicity="0..1" />
+          <End Type="Rimp_India_DBModel.Cart_Master" Role="Cart_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminLoginMaster">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Cart_Master">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRef">
+          <End Type="Rimp_India_DBModel.AdminLoginMaster" Role="AdminLoginMaster" Multiplicity="0..1" />
+          <End Type="Rimp_India_DBModel.Order_Master" Role="Order_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminLoginMaster">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Order_Master">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductKey">
+          <End Type="Rimp_India_DBModel.Product_Master" Role="Product_Master" Multiplicity="0..1" />
+          <End Type="Rimp_India_DBModel.Cart_Master" Role="Cart_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Master">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Cart_Master">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderRef">
+          <End Type="Rimp_India_DBModel.Order_Master" Role="Order_Master" Multiplicity="0..1" />
+          <End Type="Rimp_India_DBModel.Order_Item_Master" Role="Order_Item_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_Master">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Order_Item_Master">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRefe">
+          <End Type="Rimp_India_DBModel.Product_Master" Role="Product_Master" Multiplicity="0..1" />
+          <End Type="Rimp_India_DBModel.Order_Item_Master" Role="Order_Item_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Master">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Order_Item_Master">
+              <PropertyRef Name="Product_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1603,6 +1839,39 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cart_Master">
+            <EntityTypeMapping TypeName="Rimp_India_DBModel.Cart_Master">
+              <MappingFragment StoreEntitySet="Cart_Master">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Cart_ID" ColumnName="Cart_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Item_Master">
+            <EntityTypeMapping TypeName="Rimp_India_DBModel.Order_Item_Master">
+              <MappingFragment StoreEntitySet="Order_Item_Master">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Order_Item_ID" ColumnName="Order_Item_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Master">
+            <EntityTypeMapping TypeName="Rimp_India_DBModel.Order_Master">
+              <MappingFragment StoreEntitySet="Order_Master">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Order_Type" ColumnName="Order_Type" />
+                <ScalarProperty Name="Order_No" ColumnName="Order_No" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

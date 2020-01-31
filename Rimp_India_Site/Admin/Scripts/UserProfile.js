@@ -13,18 +13,17 @@ function GetProfile() {
         success: function (res) {
             var data = JSON.parse(res.d);
             ProfileImage = data.ProfileImage;
-            debugger;
             $("#userImg").attr("src", (data.ProfileImage == undefined || data.ProfileImage.trim() == "" || data.ProfileImage == null) ? "../ProfileImage/user_default.png" : "../ProfileImage/" + data.ProfileImage);
             $("#MainHeading").text((data.FullName == undefined || data.FullName.trim() == "" || data.FullName == null) ? "N/A" : data.FullName);
             $("#MainUsrHeading").text((data.UserName == undefined || data.UserName.trim() == "" || data.UserName == null) ? "" : "@" + data.UserName);
             $("#UsrBio").text((data.Bio == undefined || data.Bio == "" || data.Bio.trim() == null) ? "N/A" : data.Bio);
             $("#usrName").text((data.UserName == undefined || data.UserName == "" || data.UserName == null) ? "" : data.UserName);
-            debugger;
+          
             $("#usrFullname").text((data.FullName == undefined || data.FullName.trim() == "" || data.FullName == null) ? "N/A" : data.FullName);
             var strMail = "<a href=mailto:" + data.EmailID + ">" + data.EmailID + "</a>";
             $("#usrMail").html(strMail);
             $("#usrJoindate").text(new Date(data.JoinDate).format("MM/dd/yyyy"));
-            var strWebsite = (data.Website == undefined || data.Website.trim() == "" || data.Website == null) ? "<a>N/A</a>" : "<a href=" + data.Website + ">" + data.Website + "</a>";
+            var strWebsite = (data.Website == undefined || data.Website.trim() == "" || data.Website == null) ? "<a>N/A</a>" : "<a href='" + data.Website + "'>" + data.Website +"</a>";
             $("#usrWebsite").html(strWebsite);
             BindUserData(data);
         },

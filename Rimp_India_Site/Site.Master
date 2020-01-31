@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../assets/css/style.light-blue-500.min.css">
     <link href="../Content/toastr.min.css" rel="stylesheet" />
     <link href="../Content/jquery-ui.css" rel="stylesheet" />
+    <link href="../Content/sweet-alert.css" rel="stylesheet" />
     <style type="text/css">
         .last_pro {
             width: 348px;
@@ -189,7 +190,7 @@
                                 <a href="<%: GetRouteUrl("cart", null) %>" class="no-focus animated fadeIn animation-delay-7">
                                     <i class="fa fa-shopping-cart"></i>
                                 </a>
-                                <span class="cart-item animated fadeIn animation-delay-7">5</span>
+                                <span id="CartItemCount" class="cart-item animated fadeIn animation-delay-7">0</span>
                             </li>
                         </ul>
                     </div>
@@ -435,6 +436,7 @@
         <script src="../assets/js/index.js"></script>
         <script src="../assets/js/ecommerce.js"></script>
         <script src="../Scripts/toastr.min.js"></script>
+        <script src="../Scripts/sweetalert.min.js"></script>
         <script src="<%= ResolveUrl("~/Scripts/PageScript/master_site.js") %>"></script>
     </form>
 </body>

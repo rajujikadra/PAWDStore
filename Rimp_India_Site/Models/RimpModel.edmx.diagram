@@ -32,6 +32,14 @@
         <AssociationConnector Association="Rimp_India_DBModel.FK_SubCategory" />
         <EntityTypeShape EntityType="Rimp_India_DBModel.UserDetails_Master" Width="1.5" PointX="3.75" PointY="16.5" />
         <AssociationConnector Association="Rimp_India_DBModel.FK_User" />
+        <EntityTypeShape EntityType="Rimp_India_DBModel.Cart_Master" Width="1.5" PointX="12" PointY="2.375" />
+        <EntityTypeShape EntityType="Rimp_India_DBModel.Order_Item_Master" Width="1.5" PointX="10" PointY="10.5" />
+        <EntityTypeShape EntityType="Rimp_India_DBModel.Order_Master" Width="1.5" PointX="3.75" PointY="19.875" />
+        <AssociationConnector Association="Rimp_India_DBModel.FK_UserKey" />
+        <AssociationConnector Association="Rimp_India_DBModel.FK_UserRef" />
+        <AssociationConnector Association="Rimp_India_DBModel.FK_ProductKey" />
+        <AssociationConnector Association="Rimp_India_DBModel.FK_OrderRef" />
+        <AssociationConnector Association="Rimp_India_DBModel.FK_ProductRefe" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
