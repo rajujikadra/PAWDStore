@@ -23,16 +23,16 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled">
-                            <li>
-                                <strong>Price: </strong>₹ 1984.26</li>
-                            <li>
+                            <li id="txtSubTotal">
+                                <strong>Sub Total: </strong>₹ 1984.26</li>
+                            <li id="txtTax">
                                 <strong>Tax: </strong>₹ 47.22</li>
-                            <li>
+                            <li id="txtShippingCosts">
                                 <strong>Shipping costs: </strong>
                                 <span class="color-warning">₹ 5.25</span>
                             </li>
                         </ul>
-                        <h3>
+                        <h3 id="txtTotal">
                             <strong>Total:</strong>
                             <span class="color-primary">₹ 2456.45</span>
                         </h3>
@@ -40,6 +40,11 @@
                             <i class="zmdi zmdi-shopping-cart-plus"></i>Purchase</a>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10">
+                <a href="/home" class="btn btn-raised btn-primary">Continue Shopping</a>
             </div>
         </div>
     </div>

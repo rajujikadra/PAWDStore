@@ -52,5 +52,25 @@ namespace Rimp_India_Site.WebPages
             }
             return JsonConvert.SerializeObject(true);
         }
+
+        [WebMethod]
+        public static string UpdateQuantity(int Cart_ID, int Qty)
+        {
+            try
+            {
+                Rimp_India_DBEntities context = new Rimp_India_DBEntities();
+                var CartItem = context.Cart_Master.FirstOrDefault(x => x.Cart_ID == Cart_ID);
+                if (CartItem != null)
+                {
+                    CartItem.Quantity = Qty;
+                    context.SaveChanges();
+                }
+                return JsonConvert.SerializeObject(true);
+            }
+            catch (Exception ex)
+            {
+                return JsonConvert.SerializeObject(false);
+            }
+        }
     }
 }
