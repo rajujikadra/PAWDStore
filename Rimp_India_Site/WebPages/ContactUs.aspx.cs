@@ -29,7 +29,8 @@ namespace Rimp_India_Site.WebPages
                     Email = Email,
                     Message = Message,
                     Mobile = Mobile,
-                    Subject = Subject
+                    Subject = Subject,
+                    CreatedDate = DateTime.Now
                 };
                 context.ContactUS_Master.Add(obj);
                 context.SaveChanges();

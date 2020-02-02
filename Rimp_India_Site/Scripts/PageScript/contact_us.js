@@ -1,6 +1,7 @@
 ﻿var flage = true;
 $(document).ready(function () {
     $(".form-group").removeClass("has-error is-focused");
+    GetAllCotacts();
 });
 
 function ContactAdd() {
@@ -94,4 +95,47 @@ function emailValidOrNot(value) {
         $("#EmailDiv").removeClass("has-error is-focused");
         return true;
     }
+}
+
+function GetAllCotacts() {
+    $.ajax({
+        async: false,
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "/Admin/Pages/ContactUs.aspx/GetAlllContacts",
+        dataType: "json",
+        success: function (res) {
+            var AllMenus = JSON.parse(res.d);
+            if (AllMenus != null && AllMenus != undefined) {
+                var table = $('#example').DataTable()
+                table.destroy();
+                $('#example').DataTable({
+                    data: AllMenus,
+                    "iDisplayLength": 5,
+                    "aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                    retrieve: true,
+                    'paging': true,
+                    'sort': true,
+                    'searching': true,
+                    columns: [
+                        { data: "Name" },
+                        { data: "Email" },
+                        { data: "Mobile" },
+                        {
+                            data: "CreatedDates"
+                        },
+                        {
+                            data: function (data, type, row) {
+                                return '<a class="btn btn-outline-danger btn-sm"  data-toggle="modal" data-target="#DeleteConfirm" onclick="DeleteMenu(' + data.Contact_ID + ')"><i class="fa fa-rss"></i>&nbsp; DELETE</a>'
+                            },
+                            "orderable": false
+                        }
+                    ],
+                });
+            }
+        },
+        error: function (xhr, status, err) {
+            toastr.error(xhr.responseJSON.Message);
+        }
+    });
 }

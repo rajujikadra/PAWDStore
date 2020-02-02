@@ -21,5 +21,6 @@ namespace Rimp_India_Site.Models
         public string Email { get; set; }
         public string Subject { get; set; }
         public string Message { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     }
 }

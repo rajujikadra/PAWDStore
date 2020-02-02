@@ -1276,6 +1276,7 @@
     <Compile Include="Models\ContactUS_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\Email_Group_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
