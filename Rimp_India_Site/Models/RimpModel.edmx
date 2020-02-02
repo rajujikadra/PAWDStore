@@ -35,6 +35,18 @@
           <Property Name="Menu_ID" Type="int" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
+        <EntityType Name="ContactUS_Master">
+          <Key>
+            <PropertyRef Name="Contact_ID" />
+          </Key>
+          <Property Name="Contact_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="Subject" Type="varchar" MaxLength="550" />
+          <Property Name="Message" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="Email_Group_Master">
           <Key>
             <PropertyRef Name="Email_Group_ID" />
@@ -508,6 +520,7 @@
           <EntitySet Name="AdminLoginMaster" EntityType="Self.AdminLoginMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart_Master" EntityType="Self.Cart_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category_Master" EntityType="Self.Category_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactUS_Master" EntityType="Self.ContactUS_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Email_Group_Master" EntityType="Self.Email_Group_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Information_Master" EntityType="Self.Information_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainMenu_Master" EntityType="Self.MainMenu_Master" Schema="dbo" store:Type="Tables" />
@@ -818,6 +831,7 @@
             <End Role="Product_Master" EntitySet="Product_Master" />
             <End Role="Order_Item_Master" EntitySet="Order_Item_Master" />
           </AssociationSet>
+          <EntitySet Name="ContactUS_Master" EntityType="Rimp_India_DBModel.ContactUS_Master" />
           </EntityContainer>
         <ComplexType Name="RGetCategory_Result">
           <Property Type="Int32" Name="Category_ID" Nullable="false" />
@@ -1460,6 +1474,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ContactUS_Master">
+          <Key>
+            <PropertyRef Name="Contact_ID" />
+          </Key>
+          <Property Name="Contact_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1872,6 +1898,19 @@
                 <ScalarProperty Name="Order_Type" ColumnName="Order_Type" />
                 <ScalarProperty Name="Order_No" ColumnName="Order_No" />
                 <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactUS_Master">
+            <EntityTypeMapping TypeName="Rimp_India_DBModel.ContactUS_Master">
+              <MappingFragment StoreEntitySet="ContactUS_Master">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Contact_ID" ColumnName="Contact_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

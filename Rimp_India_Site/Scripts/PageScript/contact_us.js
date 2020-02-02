@@ -38,6 +38,7 @@ function ContactAdd() {
         $("#MessageDiv").addClass("has-error is-focused");
     }
     if (flage) {
+        HoldOn.open();
         var obj = {
             "Name": Name,
             "Mobile": Mobile,
@@ -55,7 +56,8 @@ function ContactAdd() {
             dataType: "json",
             success: function (res) {
                 ClearContactForm();
-                toastr.success("Successfully...");
+                HoldOn.close();
+                swal("Success", "Your contact has been added.", "success");
             },
             error: function (xhr, status, err) {
                 toastr.error(xhr.responseJSON.Message);

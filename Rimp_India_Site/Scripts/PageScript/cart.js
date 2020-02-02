@@ -13,6 +13,9 @@ function GetCartItems() {
             var CartStr = "";
 
             if (Item.length == 0) {
+                $("#PriceDiv").css('display', 'none');
+                $("#BtnShoppingDiv").css('display', 'none');
+                $("#CartDiv").removeClass('col-md-9').addClass('col-md-12');
                 CartStr += '<div class="text-center"><i class="glyphicon glyphicon-shopping-cart color-primary" style="font-size: 77px;"></i><h1>Your cart is currently empty</h1>';
                 CartStr += '<p class="lead lead-lg">Before proceed to checkout you must add some products to your shopping cart.<br>You will find a lot of interesting products on our "Shop" page.</p>';
                 CartStr += '<a href="/home" class="btn btn-raised btn-white color-primary"><i class="fa fa-product-hunt"></i>Start Shopping</a>';
@@ -36,7 +39,8 @@ function GetCartItems() {
                     CartStr += '</div>';
                 }
                 $("#txtSubTotal").empty().append('<strong>Sub Total: </strong>₹ ' + addCommas(SubTotal) + '</li>');
-                debugger;
+                $("#PriceDiv").css('display', 'block');
+                $("#BtnShoppingDiv").css('display', 'block');
                 var TaxArray = [30, 35, 40, 45, 50, 55];
                 var ShippigArray = [20, 25, 30, 35, 40];
                 var Tax = TaxArray[Math.floor(Math.random() * TaxArray.length)];

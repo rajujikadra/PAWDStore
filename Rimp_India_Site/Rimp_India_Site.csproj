@@ -265,6 +265,7 @@
     <Content Include="Admin\Pages\AdminDashboard.aspx" />
     <Content Include="Admin\Pages\AdminLogin.aspx" />
     <Content Include="Admin\Pages\Category.aspx" />
+    <Content Include="Admin\Pages\ContactUs.aspx" />
     <Content Include="Admin\Pages\Information.aspx" />
     <Content Include="Admin\Pages\MainMenu.aspx" />
     <Content Include="Admin\Pages\Product.aspx" />
@@ -1150,6 +1151,13 @@
     <Compile Include="Admin\Pages\Category.aspx.designer.cs">
       <DependentUpon>Category.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Pages\ContactUs.aspx.cs">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\ContactUs.aspx.designer.cs">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Pages\Information.aspx.cs">
       <DependentUpon>Information.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1263,6 +1271,9 @@
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category_Master.cs">
+      <DependentUpon>RimpModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContactUS_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Email_Group_Master.cs">
@@ -1493,11 +1504,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51088</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5190/</IISUrl>
+          <IISUrl>http://localhost:60958/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

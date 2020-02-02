@@ -28,7 +28,7 @@
                         <div class="form-group row has-error is-focused" id="MobileDiv">
                             <label for="inputEmail" autocomplete="false" class="col-lg-2 control-label">Mobile No</label>
                             <div class="col-lg-9">
-                                <input type="text" maxlength="13" onkeypress="return isNumberKey(event)" class="form-control" id="inputMobile" placeholder="Mobile">
+                                <input type="text" maxlength="10" onkeypress="return isNumberKey(event)" class="form-control" id="inputMobile" placeholder="Mobile">
                                 <span id="msgMobile" style="display: none; color: #f44336;">Please enter valid mobile number</span>
                             </div>
                         </div>
@@ -72,22 +72,21 @@
                 <div class="col-xl-3 col-lg-4 col-md-5">
                     <div class="card-body wow fadeInUp">
                         <div class="mb-2">
-                            <img src="../assets/img/Header_Logo.png">
+                            <img src="../assets/img/Header_Logo.png" style="height: 100px; width: 100px;">
                         </div>
                         <address class="no-mb">
                             <p>
-                                <i class="color-danger-light zmdi zmdi-pin mr-1"></i>S - 33 A/B, Yash Shopping Center
-Opp. Jeevan Jyot Cinema,
+                                <i class="color-danger-light zmdi zmdi-pin mr-1"></i>S - 33 A/B, ABC Shopping Center Opp. Rajhans Jyot Cinema
                             </p>
                             <p>
-                                <i class="color-warning-light zmdi zmdi-map mr-1"></i>Udhna Main Road, Surat - 304210
+                                <i class="color-warning-light zmdi zmdi-map mr-1"></i>Kamrej Main Road, Surat - 304210
                             </p>
                             <p>
                                 <i class="color-info-light zmdi zmdi-email mr-1"></i>
-                                <a href="mailto:joe@example.com">manish@rimpindia.com</a>
+                                <a href="mailto:test@example.com">test@example.com</a>
                             </p>
                             <p>
-                                <i class="color-royal-light zmdi zmdi-phone mr-1"></i>+91 93758 61240
+                                <i class="color-royal-light zmdi zmdi-phone mr-1"></i>+91 88566 99566
                             </p>
                             <%--<p>
                                 <i class="color-success-light fa fa-fax mr-1"></i>+34 123 456 7890

@@ -232,5 +232,32 @@ namespace Rimp_India_Site
             }
             return JsonConvert.SerializeObject(0);
         }
+
+        [WebMethod]
+        public static string AddProductInCart(int Product_ID, int Qty)
+        {
+            Rimp_India_DBEntities context = new Rimp_India_DBEntities();
+            int User_ID = (HttpContext.Current.Session["User"] as AdminLoginMaster).User_ID;
+            var IsThereInCart = context.Cart_Master.FirstOrDefault(x => x.User_ID == User_ID && x.Product_ID == Product_ID);
+            if (IsThereInCart == null)
+            {
+                var obj = new Cart_Master
+                {
+                    Product_ID = Product_ID,
+                    User_ID = User_ID,
+                    Quantity = Qty,
+                    CreatedDate = DateTime.Now
+                };
+                context.Cart_Master.Add(obj);
+                context.SaveChanges();
+            }
+            else
+            {
+                IsThereInCart.Quantity = (IsThereInCart.Quantity + Qty) > 10 ? 10 : (IsThereInCart.Quantity + Qty);
+                context.SaveChanges();
+            }
+            int CartItemCount = context.Cart_Master.Count(x => x.User_ID == User_ID);
+            return JsonConvert.SerializeObject(CartItemCount);
+        }
     }
 }

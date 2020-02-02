@@ -16,7 +16,7 @@
             <div class="col-md-9" id="CartDiv">
                 <%-- cart items --%>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" id="PriceDiv">
                 <div class="card card-primary">
                     <div class="card-header">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>Summary
@@ -24,17 +24,17 @@
                     <div class="card-body">
                         <ul class="list-unstyled">
                             <li id="txtSubTotal">
-                                <strong>Sub Total: </strong>₹ 1984.26</li>
+                                <strong>Sub Total: </strong>₹ 0</li>
                             <li id="txtTax">
-                                <strong>Tax: </strong>₹ 47.22</li>
+                                <strong>Tax: </strong>₹ 02</li>
                             <li id="txtShippingCosts">
                                 <strong>Shipping costs: </strong>
-                                <span class="color-warning">₹ 5.25</span>
+                                <span class="color-warning">₹ 0</span>
                             </li>
                         </ul>
                         <h3 id="txtTotal">
                             <strong>Total:</strong>
-                            <span class="color-primary">₹ 2456.45</span>
+                            <span class="color-primary">₹ 0</span>
                         </h3>
                         <a href="javascript:void(0)" class="btn btn-raised btn-primary btn-block btn-raised mt-2 no-mb">
                             <i class="zmdi zmdi-shopping-cart-plus"></i>Purchase</a>
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="BtnShoppingDiv">
             <div class="col-lg-10">
                 <a href="/home" class="btn btn-raised btn-primary">Continue Shopping</a>
             </div>

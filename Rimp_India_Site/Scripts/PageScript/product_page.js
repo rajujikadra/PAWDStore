@@ -11,6 +11,15 @@ function Product_data_bind(product_data) {
             ' <h3><b>' + product_data.Product_short_description + '</b></h3>' +
             '<p>' + product_data.Product_long_description + '</p>' +
             '<ul class="list-unstyled">' +
+            '<li><strong> Category: </strong > ' + product_data.ThirdCategory_Name + '</li>' +
+            '<li>' +
+            '<strong>Number of items: </strong>' +
+            '<div class="form form-inline input-number">' +
+            '<button onclick="DecreaseQty()" class="btn-circle btn-circle-primary btn-circle-xs" type="button"><i class="fa fa-minus"></i></button>' +
+            '<input type="text" class="form-control form-control-number" pattern="[0-9]*"  onkeypress="return isNumberOrNot(event)" id="txtQuantity" value="1">' +
+            '<button onclick="IncreaseQty()" class="btn-circle btn-circle-primary btn-circle-xs" type="button"><i class="fa fa-plus"></i></button>' +
+            '</div>' +
+            '</li>' +
             ' <li style="margin-top: 23px !important;">' +
             ' <h2 class="color-success no-m text-normal">₹ ' + addCommas(product_data.Product_Price) + '</h2>' +
             '</li>' +
@@ -19,7 +28,7 @@ function Product_data_bind(product_data) {
             ' <span class="ms-tag ms-tag-success">in stock</span>' +
             '</li>' +
             '</ul>' +
-            ' <a href="javascript:void(0)" onclick="SendToSubcategoryPage(\'' + product_data.Product_Title + '\',\'' + product_data.Product_ID + '\')" class="btn btn-primary btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
+            ' <a href="javascript:void(0)" onclick="AddProductInCart(\'' + product_data.Product_Title + '\',\'' + product_data.Product_ID + '\')" class="btn btn-primary btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
             '</div>';
     }
     $("#bind_product_data").append(bind_product_datas);
@@ -162,3 +171,99 @@ function change_image(imageName) {
     //border-color: #03a9f4;
 }
 
+function IncreaseQty() {
+    var qty = $("#txtQuantity").val().trim();
+    if (qty != "" && qty != undefined && qty != null) {
+        $("#txtQuantity").val(parseInt(qty) + 1);
+        if (parseInt($("#txtQuantity").val().trim()) > 10) {
+            $("#txtQuantity").val(qty);
+            swal("Error", "You can enter only maximum 10 quantity.", "error");
+        }
+    } else {
+        $("#txtQuantity").val(1);
+    }
+}
+function DecreaseQty() {
+    var qty = $("#txtQuantity").val().trim();
+    if (qty != "" && qty != undefined && qty != null) {
+        $("#txtQuantity").val(parseInt(qty) - 1);
+        if (parseInt($("#txtQuantity").val().trim()) <= 0) {
+            $("#txtQuantity").val(qty);
+            swal("Error", "You can't enter zero quantity.", "error");
+        }
+    } else {
+        $("#txtQuantity").val(1);
+    }
+}
+$(document).on('change', '#txtQuantity', function (e) {
+    if (this.value != "" && this.value != null && this.value != undefined) {
+        if (parseInt(this.value) > 0) {
+            if (parseInt(this.value) > 10) {
+                this.value = 1;
+                swal("Error", "You can enter only maximum 10 quantity.", "error");
+            }
+        } else {
+            this.value = 1;
+            swal("Error", "You can't enter zero quantity.", "error");
+        }
+    } else
+        this.value = 1;
+
+});
+function isNumberOrNot(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode != 46 && charCode > 31
+        && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+
+function AddProductInCart(Title, ProductID) {
+    swal({
+        title: Title,
+        text: "Are you sure you want to add this product in cart ?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: false
+    }).then(function (willDelete) {
+        if (willDelete) {
+            HoldOn.open();
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/Default.aspx/CheckUserLoginOrNot",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var status = JSON.parse(result.d);
+                    if (status == true) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Default.aspx/AddProductInCart",
+                            data: JSON.stringify({
+                                Product_ID: ProductID, Qty: $("#txtQuantity").val()
+                            }),
+                            async: false,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (result) {
+                                var CartItemCount = JSON.parse(result.d);
+                                $("#CartItemCount").text(CartItemCount);
+                                swal("Success", "Product has been added in cart", "success");
+                                HoldOn.close();
+                            },
+                            error: function (response) {
+                                IsValid = false;
+                            }
+                        });
+                    } else {
+                        location.href = '/login';
+                    }
+                },
+                error: function (response) {
+                    IsValid = false;
+                }
+            });
+        }
+    });
+}

@@ -44,6 +44,7 @@ namespace Rimp_India_Site.Models
         public virtual DbSet<Cart_Master> Cart_Master { get; set; }
         public virtual DbSet<Order_Item_Master> Order_Item_Master { get; set; }
         public virtual DbSet<Order_Master> Order_Master { get; set; }
+        public virtual DbSet<ContactUS_Master> ContactUS_Master { get; set; }
     
         public virtual ObjectResult<RGetCategory_Result> RGetCategory()
         {
