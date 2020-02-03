@@ -105,9 +105,9 @@
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <i class="zmdi zmdi-graduation-cap"></i>Cart Details</h3>
+                            <i class="zmdi zmdi-graduation-cap"></i>Product Details</h3>
                     </div>
-                    <table class="table table-no-border table-striped">
+                    <table class="table table-no-border table-striped" id="tblCheckout">
                         <thead>
                             <tr class="primary">
                                 <th class="text-primary">Product</th>

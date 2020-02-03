@@ -41,10 +41,29 @@ function GetCartItems() {
                 $("#txtSubTotal").empty().append('<strong>Sub Total: </strong>₹ ' + addCommas(SubTotal) + '</li>');
                 $("#PriceDiv").css('display', 'block');
                 $("#BtnShoppingDiv").css('display', 'block');
-                var TaxArray = [30, 35, 40, 45, 50, 55];
-                var ShippigArray = [20, 25, 30, 35, 40];
-                var Tax = TaxArray[Math.floor(Math.random() * TaxArray.length)];
-                var Shipping = ShippigArray[Math.floor(Math.random() * ShippigArray.length)];
+                //var TaxArray = [30, 35, 40, 45, 50, 55];
+                //var ShippigArray = [20, 25, 30, 35, 40];
+                //var Tax = TaxArray[Math.floor(Math.random() * TaxArray.length)];
+                //var Shipping = ShippigArray[Math.floor(Math.random() * ShippigArray.length)];
+                var Tax = 0;
+                var Shipping = 0;
+                if (SubTotal < 1000 && SubTotal > 0)
+                    Tax = 30;
+                else if (SubTotal < 5000 && SubTotal > 1001)
+                    Tax = 35;
+                else if (SubTotal < 10000 && SubTotal > 5001)
+                    Tax = 40;
+                else
+                    Tax = 50;
+
+                if (SubTotal < 1000 && SubTotal > 0)
+                    Shipping = 35;
+                else if (SubTotal < 5000 && SubTotal > 1001)
+                    Shipping = 40;
+                else if (SubTotal < 10000 && SubTotal > 5001)
+                    Shipping = 45;
+                else
+                    Shipping = 50;
                 $("#txtTax").empty().append('<strong>Tax: </strong>₹ ' + Tax + '</li>');
                 $("#txtShippingCosts").empty().append('<strong>Shipping costs: </strong><span class="color-warning">₹ ' + Shipping + '</span>');
                 var GrandTotal = (SubTotal + Tax + Shipping);
