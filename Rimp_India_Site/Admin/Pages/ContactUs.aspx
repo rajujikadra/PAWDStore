@@ -36,62 +36,48 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- .animated -->
                     </div>
-                </div>
-            </div>
-            <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="largeModalLabel">Menu</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Menu</label>
-                                <input type="text" class="form-control" id="txtMenuName" placeholder="Enter menu" />
-
-                                <div id="ErrorMsgMenu" class="sufee-alert alert with-close alert-danger alert-dismissible fade show" style="display: none;">
-                                    <span class="badge badge-pill badge-danger"></span>
-                                    Please enter menu name.
+                    <div class="content mt-3">
+                        <div class="animated fadeIn">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong class="card-title">Contact Details</strong>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label class="text-dark" style="font-style: oblique;" for="exampleInputEmail1">Name : </label>
+                                                <span style="margin-left: 45px;" id="C_name">N/A</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Subject : </label>
+                                                <span style="margin-left: 35px;" id="C_subject">N/A</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Mobile : </label>
+                                                <span style="margin-left: 39px;" id="C_mobile">N/A</span>
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="exampleInputEmail1">Email : </label>
+                                                <span style="margin-left: 50px;" id="C_email">N/A</span>
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="exampleInputEmail1">Address : </label>
+                                                <span style="margin-left: 30px;" id="C_address">N/A</span>
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="exampleInputEmail1">Message : </label>
+                                                <span style="margin-left: 26px;" id="C_message">N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" id="btnCancel" onclick="ClearModal()" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" id="btnInsertMenu" onclick="InsertMenu()" class="btn btn-primary" data-dismiss="">Submit</button>
-                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="modal fade" id="DeleteConfirm" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="largeModalLabel1">Confirm Delete</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                Are you sure want to delete this record ?
-                               
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" id="btndeletemenu" onclick="ConfirmDeleteMenu()" class="btn btn-primary">Confirm</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
-        <!-- .animated -->
     </div>
 </asp:Content>

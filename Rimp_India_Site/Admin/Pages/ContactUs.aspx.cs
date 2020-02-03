@@ -43,9 +43,26 @@ namespace Rimp_India_Site.Admin.Pages
                 Mobile = x.Mobile,
                 Name = x.Name,
                 Subject = x.Subject,
-                CreatedDates = x.CreatedDate.Value.ToShortDateString().ToString()
+                CreatedDate = x.CreatedDate
             }).ToList();
             return JsonConvert.SerializeObject(contacts);
+        }
+        [WebMethod]
+        public static string ViewContactDetails(int Contact_ID)
+        {
+            Rimp_India_DBEntities context = new Rimp_India_DBEntities();
+            var C = context.ContactUS_Master.Where(x => x.Contact_ID == Contact_ID).Select(y => new ContactViewModel()
+            {
+                Contact_ID = y.Contact_ID,
+                Address = y.Address,
+                CreatedDate = y.CreatedDate,
+                Email = y.Email,
+                Message = y.Message,
+                Mobile = y.Mobile,
+                Name = y.Name,
+                Subject = y.Subject
+            }).FirstOrDefault();
+            return JsonConvert.SerializeObject(C);
         }
     }
 }

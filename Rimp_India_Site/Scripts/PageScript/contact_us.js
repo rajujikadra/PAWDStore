@@ -122,17 +122,42 @@ function GetAllCotacts() {
                         { data: "Email" },
                         { data: "Mobile" },
                         {
-                            data: "CreatedDates"
+                            data: function (data, type, row) {
+                                return data.CreatedDate.split("T")[0];
+                            }
                         },
                         {
                             data: function (data, type, row) {
-                                return '<a class="btn btn-outline-danger btn-sm"  data-toggle="modal" data-target="#DeleteConfirm" onclick="DeleteMenu(' + data.Contact_ID + ')"><i class="fa fa-rss"></i>&nbsp; DELETE</a>'
+                                return '<button type="button" class="btn btn-outline-primary btn-sm" onclick="ViewContacts(' + data.Contact_ID + ')"><i class="fa fa-eye"></i>&nbsp; View</button>';
                             },
                             "orderable": false
                         }
-                    ],
+                    ]
                 });
             }
+        },
+        error: function (xhr, status, err) {
+            toastr.error(xhr.responseJSON.Message);
+        }
+    });
+}
+
+function ViewContacts(Id) {
+    $.ajax({
+        async: false,
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "/Admin/Pages/ContactUs.aspx/ViewContactDetails",
+        data: JSON.stringify({ Contact_ID: Id }),
+        dataType: "json",
+        success: function (res) {
+            var C = JSON.parse(res.d);
+            $("#C_name").text(C.Name);
+            $("#C_subject").text(C.Subject);
+            $("#C_mobile").text(C.Mobile);
+            $("#C_email").text(C.Email);
+            $("#C_address").text(C.Address);
+            $("#C_message").text(C.Message);
         },
         error: function (xhr, status, err) {
             toastr.error(xhr.responseJSON.Message);
