@@ -36,8 +36,8 @@
                             <strong>Total:</strong>
                             <span class="color-primary">₹ 0</span>
                         </h3>
-                        <a href="javascript:void(0)" class="btn btn-raised btn-primary btn-block btn-raised mt-2 no-mb">
-                            <i class="zmdi zmdi-shopping-cart-plus"></i>Purchase</a>
+                        <a href="<%: GetRouteUrl("confirm", null) %>" class="btn btn-raised btn-primary btn-block btn-raised mt-2 no-mb">
+                            <i class="zmdi zmdi-shopping-cart-plus"></i>Checkout</a>
                     </div>
                 </div>
             </div>

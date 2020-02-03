@@ -29,6 +29,7 @@ namespace Rimp_India_Site
                 routes.MapPageRoute("error", "404-PageNotFound", "~/Error.aspx");
                 routes.MapPageRoute("cart", "cart", "~/WebPages/Cart.aspx");
                 routes.MapPageRoute("profile", "profile", "~/WebPages/MyProfile.aspx");
+                routes.MapPageRoute("confirm", "confirm_order", "~/WebPages/Checkout.aspx");
 
                 //Admin Side Route
                 routes.MapPageRoute("AdminLogin", "adminlogin", "~/Admin/Pages/AdminLogin.aspx");

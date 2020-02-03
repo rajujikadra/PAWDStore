@@ -1035,12 +1035,14 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\PageScript\cart.js" />
+    <Content Include="Scripts\PageScript\checkout.js" />
     <Content Include="Scripts\PageScript\contact_us.js" />
     <Content Include="Scripts\PageScript\product_list.js" />
     <Content Include="Scripts\PageScript\product_page.js" />
     <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="WebPages\AboutUs.aspx" />
     <Content Include="WebPages\Cart.aspx" />
+    <Content Include="WebPages\Checkout.aspx" />
     <Content Include="WebPages\ContactUs.aspx" />
     <Content Include="WebPages\LatestUpdate.aspx" />
     <Content Include="WebPages\Latest_Information.aspx" />
@@ -1433,6 +1435,13 @@
     </Compile>
     <Compile Include="WebPages\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPages\ContactUs.aspx.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
