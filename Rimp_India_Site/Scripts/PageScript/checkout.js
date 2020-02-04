@@ -197,7 +197,43 @@ function PlaceOrder() {
         if ($("input:radio[name=paymentMethod]:checked").length === 0) {
             swal("Warning", "Please select payment method.", "warning");
         } else {
-
+            debugger;
+            var obj = {
+                BName: BName,
+                BEmail: BEmail,
+                BMobile: BMobile,
+                BAddress: BAddress,
+                BCity: BCity,
+                BState: BState,
+                BZipcode: BZipcode,
+                IsShippindAddress: IsShippindAddress,
+                SName: SName,
+                SEmail: SEmail,
+                SMobile: SMobile,
+                SAddress: SAddress,
+                SCity: SCity,
+                SState: SState,
+                SZipcode: SZipcode,
+                paymentMethod: $("input[name='paymentMethod']:checked").val(),
+                User_Address_ID: 0
+            };
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "/WebPages/Checkout.aspx/PlaceOrder",
+                data: JSON.stringify({ model: obj }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var ID = JSON.parse(result.d);
+                    if (ID > 0) {
+                        location.href = "/order_details?ID=" + ID;
+                    }
+                },
+                error: function (response) {
+                    swal("Error", "Opps! Some error", "error");
+                }
+            });
         }
     }
 }

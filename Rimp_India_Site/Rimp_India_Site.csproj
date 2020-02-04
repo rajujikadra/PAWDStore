@@ -1043,6 +1043,7 @@
     <Content Include="WebPages\AboutUs.aspx" />
     <Content Include="WebPages\Cart.aspx" />
     <Content Include="WebPages\Checkout.aspx" />
+    <Content Include="WebPages\ConfirmOrder.aspx" />
     <Content Include="WebPages\ContactUs.aspx" />
     <Content Include="WebPages\LatestUpdate.aspx" />
     <Content Include="WebPages\Latest_Information.aspx" />
@@ -1446,6 +1447,13 @@
     </Compile>
     <Compile Include="WebPages\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\ConfirmOrder.aspx.cs">
+      <DependentUpon>ConfirmOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\ConfirmOrder.aspx.designer.cs">
+      <DependentUpon>ConfirmOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPages\ContactUs.aspx.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
