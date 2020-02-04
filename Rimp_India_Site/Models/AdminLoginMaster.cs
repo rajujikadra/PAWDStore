@@ -20,6 +20,7 @@ namespace Rimp_India_Site.Models
             this.UserDetails_Master = new HashSet<UserDetails_Master>();
             this.Cart_Master = new HashSet<Cart_Master>();
             this.Order_Master = new HashSet<Order_Master>();
+            this.User_Address_Master = new HashSet<User_Address_Master>();
         }
     
         public int User_ID { get; set; }
@@ -35,5 +36,7 @@ namespace Rimp_India_Site.Models
         public virtual ICollection<Cart_Master> Cart_Master { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Master> Order_Master { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User_Address_Master> User_Address_Master { get; set; }
     }
 }

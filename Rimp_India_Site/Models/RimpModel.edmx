@@ -89,6 +89,7 @@
           <Property Name="Order_No" Type="varchar" MaxLength="50" />
           <Property Name="Order_Type" Type="varchar" MaxLength="20" />
           <Property Name="User_ID" Type="int" />
+          <Property Name="User_Address_ID" Type="int" />
           <Property Name="Order_Status" Type="varchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
@@ -185,6 +186,28 @@
           <Property Name="ThirdCategory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubCategory_ID" Type="int" />
           <Property Name="ThirdCategory_Name" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="User_Address_Master">
+          <Key>
+            <PropertyRef Name="User_Address_ID" />
+          </Key>
+          <Property Name="User_Address_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="BName" Type="varchar" MaxLength="150" />
+          <Property Name="BEmail" Type="varchar" MaxLength="250" />
+          <Property Name="BMobile" Type="varchar" MaxLength="50" />
+          <Property Name="BAddress" Type="varchar(max)" />
+          <Property Name="BCity" Type="varchar" MaxLength="150" />
+          <Property Name="BState" Type="varchar" MaxLength="150" />
+          <Property Name="BZipcode" Type="varchar" MaxLength="50" />
+          <Property Name="SName" Type="varchar" MaxLength="150" />
+          <Property Name="SEmail" Type="varchar" MaxLength="250" />
+          <Property Name="SMobile" Type="varchar" MaxLength="50" />
+          <Property Name="SAddress" Type="varchar(max)" />
+          <Property Name="SCity" Type="varchar" MaxLength="150" />
+          <Property Name="SState" Type="varchar" MaxLength="150" />
+          <Property Name="SZipcode" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UserDetails_Master">
           <Key>
@@ -390,6 +413,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserAddress">
+          <End Role="User_Address_Master" Type="Self.User_Address_Master" Multiplicity="0..1" />
+          <End Role="Order_Master" Type="Self.Order_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Address_Master">
+              <PropertyRef Name="User_Address_ID" />
+            </Principal>
+            <Dependent Role="Order_Master">
+              <PropertyRef Name="User_Address_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserIdRefence">
+          <End Role="AdminLoginMaster" Type="Self.AdminLoginMaster" Multiplicity="0..1" />
+          <End Role="User_Address_Master" Type="Self.User_Address_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminLoginMaster">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="User_Address_Master">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserKey">
           <End Role="AdminLoginMaster" Type="Self.AdminLoginMaster" Multiplicity="0..1" />
           <End Role="Cart_Master" Type="Self.Cart_Master" Multiplicity="*" />
@@ -535,6 +582,7 @@
           <EntitySet Name="SubCategory_Master" EntityType="Self.SubCategory_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subscribe_Master" EntityType="Self.Subscribe_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThirdCategory_Master" EntityType="Self.ThirdCategory_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Address_Master" EntityType="Self.User_Address_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails_Master" EntityType="Self.UserDetails_Master" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Cat_ID" Association="Self.FK_Cat_ID">
             <End Role="Category_Master" EntitySet="Category_Master" />
@@ -599,6 +647,14 @@
           <AssociationSet Name="FK_User" Association="Self.FK_User">
             <End Role="AdminLoginMaster" EntitySet="AdminLoginMaster" />
             <End Role="UserDetails_Master" EntitySet="UserDetails_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddress" Association="Self.FK_UserAddress">
+            <End Role="User_Address_Master" EntitySet="User_Address_Master" />
+            <End Role="Order_Master" EntitySet="Order_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserIdRefence" Association="Self.FK_UserIdRefence">
+            <End Role="AdminLoginMaster" EntitySet="AdminLoginMaster" />
+            <End Role="User_Address_Master" EntitySet="User_Address_Master" />
           </AssociationSet>
           <AssociationSet Name="FK_UserKey" Association="Self.FK_UserKey">
             <End Role="AdminLoginMaster" EntitySet="AdminLoginMaster" />
@@ -833,6 +889,15 @@
             <End Role="Order_Item_Master" EntitySet="Order_Item_Master" />
           </AssociationSet>
           <EntitySet Name="ContactUS_Master" EntityType="Rimp_India_DBModel.ContactUS_Master" />
+          <EntitySet Name="User_Address_Master" EntityType="Rimp_India_DBModel.User_Address_Master" />
+          <AssociationSet Name="FK_UserIdRefence" Association="Rimp_India_DBModel.FK_UserIdRefence">
+            <End Role="AdminLoginMaster" EntitySet="AdminLoginMasters" />
+            <End Role="User_Address_Master" EntitySet="User_Address_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddress" Association="Rimp_India_DBModel.FK_UserAddress">
+            <End Role="User_Address_Master" EntitySet="User_Address_Master" />
+            <End Role="Order_Master" EntitySet="Order_Master" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="RGetCategory_Result">
           <Property Type="Int32" Name="Category_ID" Nullable="false" />
@@ -862,6 +927,7 @@
           <NavigationProperty Name="UserDetails_Master" Relationship="Rimp_India_DBModel.FK_User" FromRole="AdminLoginMaster" ToRole="UserDetails_Master" />
           <NavigationProperty Name="Cart_Master" Relationship="Rimp_India_DBModel.FK_UserKey" FromRole="AdminLoginMaster" ToRole="Cart_Master" />
           <NavigationProperty Name="Order_Master" Relationship="Rimp_India_DBModel.FK_UserRef" FromRole="AdminLoginMaster" ToRole="Order_Master" />
+          <NavigationProperty Name="User_Address_Master" Relationship="Rimp_India_DBModel.FK_UserIdRefence" FromRole="AdminLoginMaster" ToRole="User_Address_Master" />
         </EntityType>
         <ComplexType Name="RGetSubCategory_Result1">
           <Property Type="Int32" Name="SubCategory_ID" Nullable="false" />
@@ -1414,6 +1480,8 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AdminLoginMaster" Relationship="Rimp_India_DBModel.FK_UserRef" FromRole="Order_Master" ToRole="AdminLoginMaster" />
           <NavigationProperty Name="Order_Item_Master" Relationship="Rimp_India_DBModel.FK_OrderRef" FromRole="Order_Master" ToRole="Order_Item_Master" />
+          <Property Name="User_Address_ID" Type="Int32" />
+          <NavigationProperty Name="User_Address_Master" Relationship="Rimp_India_DBModel.FK_UserAddress" FromRole="Order_Master" ToRole="User_Address_Master" />
         </EntityType>
         <Association Name="FK_UserKey">
           <End Type="Rimp_India_DBModel.AdminLoginMaster" Role="AdminLoginMaster" Multiplicity="0..1" />
@@ -1488,6 +1556,54 @@
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="User_Address_Master">
+          <Key>
+            <PropertyRef Name="User_Address_ID" />
+          </Key>
+          <Property Name="User_Address_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="BName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BCity" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BState" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BZipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SCity" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SState" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SZipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AdminLoginMaster" Relationship="Rimp_India_DBModel.FK_UserIdRefence" FromRole="User_Address_Master" ToRole="AdminLoginMaster" />
+          <NavigationProperty Name="Order_Master" Relationship="Rimp_India_DBModel.FK_UserAddress" FromRole="User_Address_Master" ToRole="Order_Master" />
+        </EntityType>
+        <Association Name="FK_UserIdRefence">
+          <End Type="Rimp_India_DBModel.AdminLoginMaster" Role="AdminLoginMaster" Multiplicity="0..1" />
+          <End Type="Rimp_India_DBModel.User_Address_Master" Role="User_Address_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminLoginMaster">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="User_Address_Master">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAddress">
+          <End Type="Rimp_India_DBModel.User_Address_Master" Role="User_Address_Master" Multiplicity="0..1" />
+          <End Type="Rimp_India_DBModel.Order_Master" Role="Order_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Address_Master">
+              <PropertyRef Name="User_Address_ID" />
+            </Principal>
+            <Dependent Role="Order_Master">
+              <PropertyRef Name="User_Address_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1894,6 +2010,7 @@
           <EntitySetMapping Name="Order_Master">
             <EntityTypeMapping TypeName="Rimp_India_DBModel.Order_Master">
               <MappingFragment StoreEntitySet="Order_Master">
+                <ScalarProperty Name="User_Address_ID" ColumnName="User_Address_ID" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
@@ -1914,6 +2031,29 @@
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Contact_ID" ColumnName="Contact_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Address_Master">
+            <EntityTypeMapping TypeName="Rimp_India_DBModel.User_Address_Master">
+              <MappingFragment StoreEntitySet="User_Address_Master">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SZipcode" ColumnName="SZipcode" />
+                <ScalarProperty Name="SState" ColumnName="SState" />
+                <ScalarProperty Name="SCity" ColumnName="SCity" />
+                <ScalarProperty Name="SAddress" ColumnName="SAddress" />
+                <ScalarProperty Name="SMobile" ColumnName="SMobile" />
+                <ScalarProperty Name="SEmail" ColumnName="SEmail" />
+                <ScalarProperty Name="SName" ColumnName="SName" />
+                <ScalarProperty Name="BZipcode" ColumnName="BZipcode" />
+                <ScalarProperty Name="BState" ColumnName="BState" />
+                <ScalarProperty Name="BCity" ColumnName="BCity" />
+                <ScalarProperty Name="BAddress" ColumnName="BAddress" />
+                <ScalarProperty Name="BMobile" ColumnName="BMobile" />
+                <ScalarProperty Name="BEmail" ColumnName="BEmail" />
+                <ScalarProperty Name="BName" ColumnName="BName" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="User_Address_ID" ColumnName="User_Address_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

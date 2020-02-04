@@ -12,25 +12,34 @@ namespace Rimp_India_Site.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Order_Master
+    public partial class User_Address_Master
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order_Master()
+        public User_Address_Master()
         {
-            this.Order_Item_Master = new HashSet<Order_Item_Master>();
+            this.Order_Master = new HashSet<Order_Master>();
         }
     
-        public int Order_ID { get; set; }
-        public string Order_No { get; set; }
-        public string Order_Type { get; set; }
+        public int User_Address_ID { get; set; }
         public Nullable<int> User_ID { get; set; }
-        public string Order_Status { get; set; }
+        public string BName { get; set; }
+        public string BEmail { get; set; }
+        public string BMobile { get; set; }
+        public string BAddress { get; set; }
+        public string BCity { get; set; }
+        public string BState { get; set; }
+        public string BZipcode { get; set; }
+        public string SName { get; set; }
+        public string SEmail { get; set; }
+        public string SMobile { get; set; }
+        public string SAddress { get; set; }
+        public string SCity { get; set; }
+        public string SState { get; set; }
+        public string SZipcode { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<int> User_Address_ID { get; set; }
     
         public virtual AdminLoginMaster AdminLoginMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order_Item_Master> Order_Item_Master { get; set; }
-        public virtual User_Address_Master User_Address_Master { get; set; }
+        public virtual ICollection<Order_Master> Order_Master { get; set; }
     }
 }

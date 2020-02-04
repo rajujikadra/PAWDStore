@@ -41,6 +41,9 @@
         <AssociationConnector Association="Rimp_India_DBModel.FK_OrderRef" />
         <AssociationConnector Association="Rimp_India_DBModel.FK_ProductRefe" />
         <EntityTypeShape EntityType="Rimp_India_DBModel.ContactUS_Master" Width="1.5" PointX="12.375" PointY="5.75" />
+        <EntityTypeShape EntityType="Rimp_India_DBModel.User_Address_Master" Width="1.5" PointX="3.75" PointY="23.75" />
+        <AssociationConnector Association="Rimp_India_DBModel.FK_UserIdRefence" />
+        <AssociationConnector Association="Rimp_India_DBModel.FK_UserAddress" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
