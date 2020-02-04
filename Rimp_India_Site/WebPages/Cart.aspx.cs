@@ -35,7 +35,8 @@ namespace Rimp_India_Site.WebPages
                     ProductImage = y.Product_Master.Product_Image_Master.FirstOrDefault().Image_name,
                     Product_Price = (decimal)y.Product_Master.Product_Price,
                     Quantity = (int)y.Quantity,
-                    Product_Title = y.Product_Master.Product_Title
+                    Product_Title = y.Product_Master.Product_Title,
+                    Product_ID = y.Product_ID
                 }).ToList();
             }
             return JsonConvert.SerializeObject(Items);

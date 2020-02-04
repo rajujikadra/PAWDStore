@@ -12,6 +12,7 @@ namespace Rimp_India_Site.Models
         public int Quantity { get; set; }
         public string ProductImage { get; set; }
         public decimal Product_Price { get; set; }
+        public int? Product_ID { get; set; }
 
     }
 }
