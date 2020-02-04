@@ -1334,6 +1334,7 @@
     <Compile Include="Models\MainMenu_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\Order_Item_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>

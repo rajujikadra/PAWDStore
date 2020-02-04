@@ -99,7 +99,6 @@ $(document).on('change', '#chkBilling', function (e) {
     }
 });
 function PlaceOrder() {
-    debugger;
     var flage = true;
     var BName = $("#txtName").val().trim();
     var BEmail = $("#txtEmail").val().trim();
@@ -193,5 +192,12 @@ function PlaceOrder() {
             $("#SZipcodeDiv").addClass("has-error is-focused");
         } else
             $("#SZipcodeDiv").removeClass("has-error is-focused");
+    }
+    if (flage) {
+        if ($("input:radio[name=paymentMethod]:checked").length === 0) {
+            swal("Warning", "Please select payment method.", "warning");
+        } else {
+
+        }
     }
 }
