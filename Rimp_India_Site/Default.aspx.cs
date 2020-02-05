@@ -39,7 +39,7 @@ namespace Rimp_India_Site
             {
                 Rimp_India_DBEntities context = new Rimp_India_DBEntities();
                 var List = context.RGetCategory().ToList();
-                return JsonConvert.SerializeObject(List);
+                return JsonConvert.SerializeObject(List.OrderBy(x=> x.Category_ID));
             }
             catch (Exception ex)
             {

@@ -117,6 +117,7 @@ function GetAllMenus() {
         success: function (res) {
             var AllMenus = JSON.parse(res.d);
             if (AllMenus != null && AllMenus != undefined) {
+                $("#DrdMenu").empty();
                 for (i = 0; i < AllMenus.length; i++) {
                     $("#DrdMenu").append($("<option></option>").val(AllMenus[i].Menu_ID).html(AllMenus[i].Menu_Name));
                     $("#FilterMenu").append($("<option></option>").val(AllMenus[i].Menu_ID).html(AllMenus[i].Menu_Name));
