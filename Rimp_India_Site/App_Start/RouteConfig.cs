@@ -48,6 +48,7 @@ namespace Rimp_India_Site
                 routes.MapPageRoute("Information", "Information", "~/Admin/Pages/Information.aspx");
                 routes.MapPageRoute("sendemail", "sendemail", "~/Admin/Pages/SendEmail.aspx");
                 routes.MapPageRoute("contacts", "contacts", "~/Admin/Pages/ContactUs.aspx");
+                routes.MapPageRoute("orders", "orders", "~/Admin/Pages/OrderList.aspx");
 
                 //contact
             }

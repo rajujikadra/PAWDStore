@@ -268,6 +268,7 @@
     <Content Include="Admin\Pages\ContactUs.aspx" />
     <Content Include="Admin\Pages\Information.aspx" />
     <Content Include="Admin\Pages\MainMenu.aspx" />
+    <Content Include="Admin\Pages\OrderList.aspx" />
     <Content Include="Admin\Pages\Product.aspx" />
     <Content Include="Admin\Pages\ProductImages.aspx" />
     <Content Include="Admin\Pages\Product_CK_Editor.aspx" />
@@ -280,6 +281,7 @@
     <Content Include="Admin\Scripts\category.js" />
     <Content Include="Admin\Scripts\footer_information.js" />
     <Content Include="Admin\Scripts\main_menu.js" />
+    <Content Include="Admin\Scripts\order_list.js" />
     <Content Include="Admin\Scripts\product_ck_editor.js" />
     <Content Include="Admin\Scripts\product_image.js" />
     <Content Include="Admin\Scripts\product_page.js" />
@@ -1037,6 +1039,7 @@
     <Content Include="Scripts\PageScript\cart.js" />
     <Content Include="Scripts\PageScript\checkout.js" />
     <Content Include="Scripts\PageScript\contact_us.js" />
+    <Content Include="Scripts\PageScript\order_details.js" />
     <Content Include="Scripts\PageScript\product_list.js" />
     <Content Include="Scripts\PageScript\product_page.js" />
     <Content Include="Scripts\sweetalert.min.js" />
@@ -1175,6 +1178,13 @@
     <Compile Include="Admin\Pages\MainMenu.aspx.designer.cs">
       <DependentUpon>MainMenu.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Pages\OrderList.aspx.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Pages\OrderList.aspx.designer.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Pages\Product.aspx.cs">
       <DependentUpon>Product.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1269,6 +1279,7 @@
     <Compile Include="Models\AdminLoginMaster.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminOrderViewmodel.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\Cart_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
@@ -1335,6 +1346,8 @@
     <Compile Include="Models\MainMenu_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrderDetailsViewModel.cs" />
+    <Compile Include="Models\OrderItemsViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\Order_Item_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>

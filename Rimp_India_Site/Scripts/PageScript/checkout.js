@@ -197,7 +197,6 @@ function PlaceOrder() {
         if ($("input:radio[name=paymentMethod]:checked").length === 0) {
             swal("Warning", "Please select payment method.", "warning");
         } else {
-            debugger;
             var obj = {
                 BName: BName,
                 BEmail: BEmail,

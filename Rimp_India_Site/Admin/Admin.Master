@@ -61,6 +61,7 @@
                                 <li><i class="menu-icon fa fa-sign-in"></i><a href="<%: GetRouteUrl("product_add", null) %>">Product</a></li>
                                 <li><i class="menu-icon fa fa-sign-in"></i><a href="<%: GetRouteUrl("subscriber_list", null) %>">Subscriber</a></li>
                                 <li><i class="menu-icon fa fa-sign-in"></i><a href="<%: GetRouteUrl("Information", null) %>">Information</a></li>
+                                <li><i class="menu-icon fa fa-sign-in"></i><a href="<%: GetRouteUrl("orders", null) %>">Orders</a></li>
                                 <%--<li><i class="menu-icon fa fa-sign-in"></i><a href="<%: GetRouteUrl("sendemail", null) %>">Mail Send</a></li>--%>
                                 <li><i class="menu-icon fa fa-sign-in"></i><a href="<%: GetRouteUrl("contacts", null) %>">Contact</a></li>
                             </ul>

@@ -15,16 +15,7 @@ namespace Rimp_India_Site.WebPages
         protected void Page_Load(object sender, EventArgs e)
         {
             Rimp_India_DBEntities context = new Rimp_India_DBEntities();
-            if (Session["User"] != null)
-            {
-                var user = Session["User"] as AdminLoginMaster;
-                bool IsAdmin = context.AdminLoginMasters.Any(x => x.IsAdmin == true && x.EmailID == user.EmailID);
-                if (!IsAdmin)
-                {
-                    Response.RedirectToRoute("home", null);
-                }
-            }
-            else
+            if (Session["User"] == null)
             {
                 Response.RedirectToRoute("home", null);
             }
@@ -36,7 +27,9 @@ namespace Rimp_India_Site.WebPages
             {
                 Rimp_India_DBEntities context = new Rimp_India_DBEntities();
                 int UserID = (HttpContext.Current.Session["User"] as AdminLoginMaster).User_ID;
-                string Order_NO = DateTime.Now.Ticks.ToString();
+                Random generator = new Random();
+                string Order_NO = generator.Next(0, 999999).ToString("D6");
+              
                 if (model.User_Address_ID == 0)
                 {
                     var address = new User_Address_Master
@@ -49,13 +42,13 @@ namespace Rimp_India_Site.WebPages
                         BState = model.BState,
                         BZipcode = model.BZipcode,
                         CreatedDate = DateTime.Now,
-                        SName = model.SName,
-                        SCity = model.SCity,
-                        SAddress = model.SAddress,
-                        SEmail = model.SEmail,
-                        SMobile = model.SMobile,
-                        SState = model.SState,
-                        SZipcode = model.SZipcode,
+                        SName = !string.IsNullOrEmpty(model.SName) ? model.SName : model.BName,
+                        SCity = !string.IsNullOrEmpty(model.SCity) ? model.SCity : model.BCity,
+                        SAddress = !string.IsNullOrEmpty(model.SAddress) ? model.SAddress : model.BAddress,
+                        SEmail = !string.IsNullOrEmpty(model.SEmail) ? model.SEmail : model.BEmail,
+                        SMobile = !string.IsNullOrEmpty(model.SMobile) ? model.SMobile : model.BMobile,
+                        SState = !string.IsNullOrEmpty(model.SState) ? model.SState : model.BState,
+                        SZipcode = !string.IsNullOrEmpty(model.SZipcode) ? model.SZipcode : model.BZipcode,
                         User_ID = UserID
                     };
                     context.User_Address_Master.Add(address);
