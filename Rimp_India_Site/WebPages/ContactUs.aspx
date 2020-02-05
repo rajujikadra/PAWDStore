@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-8 col-md-7">
-                    <iframe width="100%" height="340" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=S%20-%2033%20A%2FB%2C%20Yash%20Shopping%20Center%20Opp.%20Jeevan%20Jyot%20Cinema%2C%20%20Udhna%20Main%20Road%2C%20Surat%20-%20304210+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/"></iframe>
+                    <iframe width="100%" height="340" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48342.06480344582!2d-73.980069429762!3d40.775680208459505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2589a018531e3%3A0xb9df1f7387a94119!2sCentral+Park!5e0!3m2!1sen!2sus!4v1491233314840" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/"></iframe>
                     <%--<iframe width="100%" height="340" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48342.06480344582!2d-73.980069429762!3d40.775680208459505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2589a018531e3%3A0xb9df1f7387a94119!2sCentral+Park!5e0!3m2!1sen!2sus!4v1491233314840"></iframe>--%>
                 </div>
             </div>

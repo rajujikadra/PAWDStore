@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿var User_Address_ID = 0;
+$(document).ready(function () {
     GetCheckoutItems();
     GetAllAddress();
 });
@@ -101,7 +102,7 @@ $(document).on('change', '#chkBilling', function (e) {
         $("#textSzipcode").val($("#textZipcode").val());
     } else {
         $("#SNameDiv").removeClass("label-floating label-float");
-        $("#SNameDiv").addClass("label-floating is-empty");       
+        $("#SNameDiv").addClass("label-floating is-empty");
         $("#txtSname").val("");
 
         $("#SEmailDiv").removeClass("label-floating label-float");
@@ -245,7 +246,7 @@ function PlaceOrder() {
                 SState: SState,
                 SZipcode: SZipcode,
                 paymentMethod: $("input[name='paymentMethod']:checked").val(),
-                User_Address_ID: 0
+                User_Address_ID: User_Address_ID
             };
             $.ajax({
                 async: false,
@@ -312,9 +313,10 @@ function GetAllAddress() {
 
 //    }
 //}
-$(document).on('change','.subject-list', function () {
+$(document).on('change', '.subject-list', function () {
     $('.subject-list').not(this).prop('checked', false);
     if (this.checked) {
+        User_Address_ID = this.value;
         $.ajax({
             async: false,
             type: "POST",
@@ -325,6 +327,36 @@ $(document).on('change','.subject-list', function () {
             success: function (result) {
                 var Item = JSON.parse(result.d);
                 if (Item !== null) {
+                    $("#BNameDiv").removeClass("label-floating is-empty has-error");
+                    $("#BNameDiv").addClass("label-floating label-float");
+                    $("#txtName").val(Item.BName);
+
+                    $("#BEmailDiv").removeClass("label-floating is-empty has-error");
+                    $("#BEmailDiv").addClass("label-floating label-float");
+                    $("#txtEmail").val(Item.BEmail);
+
+                    $("#BMobileDiv").removeClass("label-floating is-empty has-error");
+                    $("#BMobileDiv").addClass("label-floating label-float");
+                    $("#txtmobile").val(Item.BMobile);
+
+                    $("#BAddressDiv").removeClass("label-floating is-empty has-error");
+                    $("#BAddressDiv").addClass("label-floating label-float");
+                    $("#textAddress").val(Item.BAddress);
+
+                    $("#BCityDiv").removeClass("label-floating is-empty has-error");
+                    $("#BCityDiv").addClass("label-floating label-float");
+                    $("#textCity").val(Item.BCity);
+
+                    $("#BStateDiv").removeClass("label-floating is-empty has-error");
+                    $("#BStateDiv").addClass("label-floating label-float");
+                    $("#textState").val(Item.BState);
+
+                    $("#BZipcodeDiv").removeClass("label-floating is-empty has-error");
+                    $("#BZipcodeDiv").addClass("label-floating label-float");
+                    $("#textZipcode").val(Item.BZipcode);
+
+                    //
+
                     $("#SNameDiv").removeClass("label-floating is-empty has-error");
                     $("#SNameDiv").addClass("label-floating label-float");
                     $("#txtSname").val(Item.SName);
@@ -359,6 +391,36 @@ $(document).on('change','.subject-list', function () {
             }
         });
     } else {
+        User_Address_ID = 0;
+        $("#BNameDiv").removeClass("label-floating label-float");
+        $("#BNameDiv").addClass("label-floating is-empty");
+        $("#txtName").val("");
+
+        $("#BEmailDiv").removeClass("label-floating label-float");
+        $("#BEmailDiv").addClass("label-floating is-empty");
+        $("#txtEmail").val("");
+
+        $("#BMobileDiv").removeClass("label-floating label-float");
+        $("#BMobileDiv").addClass("label-floating is-empty");
+        $("#txtmobile").val("");
+
+        $("#BAddressDiv").removeClass("label-floating label-float");
+        $("#BAddressDiv").addClass("label-floating is-empty");
+        $("#textAddress").val("");
+
+        $("#BCityDiv").removeClass("label-floating label-float");
+        $("#BCityDiv").addClass("label-floating is-empty");
+        $("#textCity").val("");
+
+        $("#BStateDiv").removeClass("label-floating label-float");
+        $("#BStateDiv").addClass("label-floating is-empty");
+        $("#textState").val("");
+
+        $("#BZipcodeDiv").removeClass("label-floating label-float");
+        $("#BZipcodeDiv").addClass("label-floating is-empty");
+        $("#textZipcode").val("");
+
+        //
         $("#SNameDiv").removeClass("label-floating label-float");
         $("#SNameDiv").addClass("label-floating is-empty");
         $("#txtSname").val("");
