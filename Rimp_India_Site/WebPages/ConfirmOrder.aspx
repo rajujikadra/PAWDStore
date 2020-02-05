@@ -2,14 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script src="../Scripts/PageScript/order_details.js"></script>
-
+    
     <div class="material-background"></div>
     <div class="container text-center mb-6">
         <h1 class="no-m ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5">Thanks for order</h1>
         <p class="lead lead-lg color-white text-center center-block mt-2 mw-800 fw-300 animated fadeInUp animation-delay-7">
             Thanks for shopping with PAWD stores. You will find a summary of your recent purchase below. Please allow up to 3 business days (excluding weekends, holidays and sale days) to process and ship your order.
-          <span class="colorStar">tricks</span> and
-          <span class="colorStar">discounts</span>.
         </p>
     </div>
     <div class="container">

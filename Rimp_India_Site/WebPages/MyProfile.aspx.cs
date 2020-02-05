@@ -16,18 +16,10 @@ namespace Rimp_India_Site.WebPages
         protected void Page_Load(object sender, EventArgs e)
         {
             Rimp_India_DBEntities context = new Rimp_India_DBEntities();
-            if (Session["User"] != null)
-            {
-                var user = Session["User"] as AdminLoginMaster;
-                bool IsAdmin = context.AdminLoginMasters.Any(x => x.IsAdmin == true && x.EmailID == user.EmailID);
-                if (!IsAdmin)
-                {
-                    Response.RedirectToRoute("home", null);
-                }
-            }
-            else
+            if (Session["User"] == null)
             {
                 Response.RedirectToRoute("home", null);
+
             }
         }
         [WebMethod]

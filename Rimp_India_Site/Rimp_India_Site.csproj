@@ -1031,6 +1031,7 @@
     <Content Include="Scripts\ckeditor\skins\v2\skin.js" />
     <Content Include="Scripts\ckeditor\skins\v2\templates.css" />
     <Content Include="Scripts\ckeditor\themes\default\theme.js" />
+    <Content Include="WebPages\ViewOrder.aspx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1039,6 +1040,7 @@
     <Content Include="Scripts\PageScript\cart.js" />
     <Content Include="Scripts\PageScript\checkout.js" />
     <Content Include="Scripts\PageScript\contact_us.js" />
+    <Content Include="Scripts\PageScript\myorder.js" />
     <Content Include="Scripts\PageScript\order_details.js" />
     <Content Include="Scripts\PageScript\product_list.js" />
     <Content Include="Scripts\PageScript\product_page.js" />
@@ -1050,6 +1052,7 @@
     <Content Include="WebPages\ContactUs.aspx" />
     <Content Include="WebPages\LatestUpdate.aspx" />
     <Content Include="WebPages\Latest_Information.aspx" />
+    <Content Include="WebPages\MyOrder.aspx" />
     <Content Include="WebPages\MyProfile.aspx" />
     <Content Include="WebPages\ProductAllCategoryList.aspx" />
     <Content Include="WebPages\ProductList.aspx" />
@@ -1489,6 +1492,13 @@
     <Compile Include="WebPages\Latest_Information.aspx.designer.cs">
       <DependentUpon>Latest_Information.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebPages\MyOrder.aspx.cs">
+      <DependentUpon>MyOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\MyOrder.aspx.designer.cs">
+      <DependentUpon>MyOrder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebPages\MyProfile.aspx.cs">
       <DependentUpon>MyProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1516,6 +1526,13 @@
     </Compile>
     <Compile Include="WebPages\ProductPage.aspx.designer.cs">
       <DependentUpon>ProductPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\ViewOrder.aspx.cs">
+      <DependentUpon>ViewOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\ViewOrder.aspx.designer.cs">
+      <DependentUpon>ViewOrder.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

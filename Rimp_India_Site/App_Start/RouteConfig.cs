@@ -31,6 +31,8 @@ namespace Rimp_India_Site
                 routes.MapPageRoute("profile", "profile", "~/WebPages/MyProfile.aspx");
                 routes.MapPageRoute("confirm", "confirm_order", "~/WebPages/Checkout.aspx");
                 routes.MapPageRoute("order_details", "order_details/{*ID}", "~/WebPages/ConfirmOrder.aspx");
+                routes.MapPageRoute("myorders", "myorders", "~/WebPages/MyOrder.aspx");
+                routes.MapPageRoute("vieworder", "vieworder/{*ID}", "~/WebPages/ViewOrder.aspx");
 
                 //Admin Side Route
                 routes.MapPageRoute("AdminLogin", "adminlogin", "~/Admin/Pages/AdminLogin.aspx");

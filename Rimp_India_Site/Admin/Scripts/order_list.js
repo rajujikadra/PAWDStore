@@ -83,9 +83,9 @@ function ViewOrder(Order_ID) {
                         SubTotal = SubTotal + (parseInt(Items.OrderItem[i].Product_Price) * parseInt(Items.OrderItem[i].Quantity));
                         str += '<tr>';
                         str += '<td><img style="height: 80px; width: 95px;" src="../ProductImage/' + Items.OrderItem[i].ImageName + '" onError="imgError(this);" /></td>';
-                        str += ' <td><a href="product?ID=' + Items.OrderItem[i].Product_ID + '">' + Items.OrderItem[i].Product_Title + '</a></td>';
+                        str += ' <td><a target="_blank" href="product?ID=' + Items.OrderItem[i].Product_ID + '">' + Items.OrderItem[i].Product_Title + '</a></td>';
                         str += '<td>' + Items.OrderItem[i].Quantity + '</td>';
-                        str += '<td>' + addCommas(Total) + '</td>';
+                        str += '<td>₹ ' + addCommas(Total) + '</td>';
                         str += '</tr>';
                     }
 
@@ -110,9 +110,9 @@ function ViewOrder(Order_ID) {
                         Shipping = 50;
 
                     var GrandTotal = (SubTotal + Tax + Shipping);
-                    str += '<tr style="color: white; background: burlywood;"><td colspan="2"></td><td>Tax</td><td>' + Tax + '</td></tr>';
-                    str += '<tr style="background: orange; color: white;"><td colspan="2"></td><td>Shipping costs</td><td>' + Shipping + '</td></tr>';
-                    str += '<tr style="color: white; background: green;"><td colspan="2"></td><td>Grand Total</td><td>' + addCommas(GrandTotal) + '</td></tr>';
+                    str += '<tr style="color: white; background: burlywood;"><td colspan="2"></td><td>Tax</td><td>₹ ' + Tax + '</td></tr>';
+                    str += '<tr style="background: orange; color: white;"><td colspan="2"></td><td>Shipping costs</td><td>₹ ' + Shipping + '</td></tr>';
+                    str += '<tr style="color: white; background: green;"><td colspan="2"></td><td>Grand Total</td><td>₹ ' + addCommas(GrandTotal) + '</td></tr>';
                     $("#ProductImage tbody").empty();
                     $("#ProductImage tbody").append(str);
                 } else {
