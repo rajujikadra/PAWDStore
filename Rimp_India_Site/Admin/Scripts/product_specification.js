@@ -14,9 +14,10 @@ function SetMode() {
     Product_specification_mode = "add";
 }
 
-function get_all_product_Specification_by_PID(P_specification_list, Spec_grp_id, PID) {
-    Specification_group_id = Spec_grp_id;
-    ProductID = PID
+function get_all_product_Specification_by_PID(P_specification_list, PID) {
+    debugger;
+    Specification_group_id = 0;
+    ProductID = PID;
     $.ajax({
         async: false,
         type: "POST",
@@ -24,7 +25,7 @@ function get_all_product_Specification_by_PID(P_specification_list, Spec_grp_id,
         url: "/Admin/Pages/ProductImages.aspx/GetProduct_by_PID",
         data: JSON.stringify(
             {
-                "PID": PID,
+                "PID": PID
             }),
         dataType: "json",
         success: function (res) {
@@ -95,7 +96,7 @@ function InsertProductSpec() {
                 success: function (res) {
                     var status = JSON.parse(res.d);
                     if (status == "success") {
-                        get_all_spec_by_PID(Specification_group_id);
+                        get_all_spec_by_PID(ProductID);
                         ClearModal();
                         $("#btnInsertSubCat").attr("data-dismiss", "modal");
                         toastr.success("Successfully Inserted !!!")
@@ -123,9 +124,10 @@ function InsertProductSpec() {
                     }),
                 dataType: "json",
                 success: function (res) {
+                    debugger;
                     var status = JSON.parse(res.d);
                     if (status == "success") {
-                        get_all_spec_by_PID(Specification_group_id);
+                        get_all_spec_by_PID(ProductID);
                         ClearModal();
                         $("#btnInsertSubCat").attr("data-dismiss", "modal");
                         toastr.success("Successfully Updated !!!")
@@ -151,12 +153,12 @@ function get_all_spec_by_PID(ID) {
         url: "/Admin/Pages/Product_Specification.aspx/GetProSpecByPID",
         data: JSON.stringify(
             {
-                "Spec_grp_id": ID,
+                "Product_ID": ID
             }),
         dataType: "json",
         success: function (res) {
             var status = JSON.parse(res.d);
-            get_all_product_Specification_by_PID(status, Specification_group_id, ProductID);
+            get_all_product_Specification_by_PID(status, ProductID);
         },
         error: function (xhr, status, err) {
             toastr.error(xhr.responseJSON.Message);
@@ -178,6 +180,7 @@ function EditProductSpec(spec_id) {
             }),
         dataType: "json",
         success: function (res) {
+            debugger;
             var status = JSON.parse(res.d);
             ProductID = status.Product_ID;
             if (status != null) {
@@ -207,7 +210,7 @@ function ConfirmDeleteProductCK() {
         success: function (res) {
             var status = JSON.parse(res.d);
             if (status == "success") {
-                get_all_spec_by_PID(Specification_group_id);
+                get_all_spec_by_PID(ProductID);
                 ClearModal();
                 $("#btndeletemenu").attr("data-dismiss", "modal");
                 toastr.success("Successfully Updated !!!")

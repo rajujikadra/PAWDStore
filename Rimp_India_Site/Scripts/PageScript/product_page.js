@@ -105,19 +105,16 @@ function bind_specification(ID) {
         dataType: "json",
         success: function (res) {
             var status = JSON.parse(res.d);
-
+            debugger;
             var specification_string = "";
             if (all_spec_group.length > 0) {
-                for (var i = 0; i < all_spec_group.length; i++) {
-                    specification_string += '<table class="table table-no-border table-striped">' +
-                        '<thead><tr><th style="color:#a92e09;">' + all_spec_group[i].Specification_Group_Name.toUpperCase() + '</th></tr></thead>';
-                    for (var x = 0; x < status.length; x++) {
-                        if (all_spec_group[i].Specification_Group_Name == status[x].Specification_Group_Name) {
-                            specification_string += '<tbody><tr><td style="width: 50%;"><b>' + status[x].Specification_Title + '</b></td><td>' + status[x].Specification_Value + '</td></tr></tbody>';
-                        }
-                    }
-                    specification_string += '</table>';
+
+                specification_string += '<table class="table table-no-border table-striped">' +
+                    '<thead><tr><th style="color:#a92e09;"></th></tr></thead>';
+                for (var x = 0; x < status.length; x++) {
+                    specification_string += '<tbody><tr><td style="width: 50%;"><b>' + status[x].Specification_Title + '</b></td><td>' + status[x].Specification_Value + '</td></tr></tbody>';
                 }
+                specification_string += '</table>';
                 $("#bind_product_specification").append(specification_string);
             } else {
                 var empty_string = '<table class="table table-no-border table-striped"><thead><tr><th>NO SPECIFICATION AVAILABLE</th></tr></thead></table>';

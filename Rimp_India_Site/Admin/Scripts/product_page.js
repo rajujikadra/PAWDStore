@@ -59,7 +59,7 @@ function get_all_products() {
                         },
                         {
                             data: function (data, type, row) {
-                                return '<a href="product_specification_group?ID=' + data.Product_ID + '" class="btn btn-outline-success btn-sm" ><i class="fa fa-magic"></i>&nbsp; Spec_Group</a>'
+                                return '<a href="product_specification?ID=' + data.Product_ID + '" class="btn btn-outline-success btn-sm" ><i class="fa fa-magic"></i>&nbsp; Spec_Group</a>'
                             },
                             "orderable": false
                         },

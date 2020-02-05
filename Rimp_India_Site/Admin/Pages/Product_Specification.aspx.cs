@@ -28,10 +28,10 @@ namespace Rimp_India_Site.Admin.Pages
                 {
                     string ID = Request.QueryString["ID"];
 
-                    int Product_Spec_ID = Convert.ToInt32(ID.Split('/')[0]);
-                    int ProductID = Convert.ToInt32(ID.Split('/')[1]);
+                    int ProductID = Convert.ToInt32(ID.Split('/')[0]);
+                    //int ProductID = Convert.ToInt32(ID.Split('/')[1]);
 
-                    var specification_list = context.Product_Specification_Master.Where(x => x.Specification_GroupID == Product_Spec_ID).Select(y => new
+                    var specification_list = context.Product_Specification_Master.Where(x => x.Product_ID == ProductID).Select(y => new
                     {
                         y.Product_Specification_ID,
                         y.Specification_Title,
@@ -44,9 +44,9 @@ namespace Rimp_India_Site.Admin.Pages
                     var jsonSerialiser = new JavaScriptSerializer();
                     jsonSerialiser.MaxJsonLength = int.MaxValue;
                     var Data = jsonSerialiser.Serialize(specification_list);
-                    var Specification_ID = jsonSerialiser.Serialize(Product_Spec_ID);
+                    //var Specification_ID = jsonSerialiser.Serialize(Product_Spec_ID);
                     var PID = jsonSerialiser.Serialize(ProductID);
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ProductSpecification", "get_all_product_Specification_by_PID(" + Data + ", " + Specification_ID + "," + PID + ");", true);
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ProductSpecification", "get_all_product_Specification_by_PID(" + Data + "," + PID + ");", true);
                 }
             }
             else
@@ -55,12 +55,12 @@ namespace Rimp_India_Site.Admin.Pages
             }
         }
         [WebMethod]
-        public static string GetProSpecByPID(int Spec_grp_id)
+        public static string GetProSpecByPID(int Product_ID)
         {
             try
             {
                 Rimp_India_DBEntities context = new Rimp_India_DBEntities();
-                var specification_list = context.Product_Specification_Master.Where(x => x.Specification_GroupID == Spec_grp_id).Select(y => new
+                var specification_list = context.Product_Specification_Master.Where(x => x.Product_ID == Product_ID).Select(y => new
                 {
                     y.Product_Specification_ID,
                     y.Product_ID,
@@ -84,7 +84,7 @@ namespace Rimp_India_Site.Admin.Pages
             try
             {
                 Rimp_India_DBEntities context = new Rimp_India_DBEntities();
-                var status = context.Product_specification_insert(Speec_grpID, PID, Spec_title, Spec_value, DateTime.Now, null).SingleOrDefault();
+                var status = context.Product_specification_insert(null, PID, Spec_title, Spec_value, DateTime.Now, null).SingleOrDefault();
                 return JsonConvert.SerializeObject(status);
             }
             catch (Exception ex)
