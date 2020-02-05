@@ -47,6 +47,7 @@ function GetAllOrders() {
 }
 
 function ViewOrder(Order_ID) {
+    HoldOn.open();
     $.ajax({
         async: false,
         type: "POST",
@@ -115,16 +116,32 @@ function ViewOrder(Order_ID) {
                     str += '<tr style="color: white; background: green;"><td colspan="2"></td><td>Grand Total</td><td>₹ ' + addCommas(GrandTotal) + '</td></tr>';
                     $("#ProductImage tbody").empty();
                     $("#ProductImage tbody").append(str);
+
+                    if (Items.OrderStatus == "Processing") {
+                        var btnStr = '';
+                        btnStr += '<div class="col-md-2"><button onclick="ChangeOrderStatus(\'' + Items.Order_ID + '\',\'Shipped\')" type="button" class="btn btn-outline-success btn-sm">Shipped </button></div>';
+                        btnStr += '<div class="col-md-2"><button onclick="ChangeOrderStatus(\'' + Items.Order_ID + '\',\'Cancelled\')" type="button" class="btn btn-outline-danger btn-sm">Cancelled </button></div>';
+                        $("#btnChangeOrderStatus").empty();
+                        $("#btnChangeOrderStatus").append(btnStr);
+                        $("#btnChangeOrderStatus").css('display', 'block');
+                    } else {
+                        $("#btnChangeOrderStatus").css('display', 'none');
+                    }
+
                 } else {
                     var strs = "";
                     strs += '<tr><td colspan="4"></td></tr>';
                     $("#ProductImage tbody").empty();
                     $("#ProductImage tbody").append(str);
                 }
+                $('html, body').animate({
+                    scrollTop: $("#CartTitles").parent().offset().top
+                }, 500);
+                HoldOn.close();
             }
         },
         error: function (xhr, status, err) {
-            toastr.error(xhr.responseJSON.Message);
+            HoldOn.close();
         }
     });
 }
@@ -136,4 +153,28 @@ function imgError(image) {
 }
 function addCommas(intNum) {
     return (intNum + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+}
+
+function ChangeOrderStatus(Id, Status) {
+    $.ajax({
+        async: false,
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "/Admin/Pages/OrderList.aspx/ChangeOrderStatus",
+        data: JSON.stringify({ Order_ID: Id, Status: Status }),
+        dataType: "json",
+        success: function (res) {
+            var Items = JSON.parse(res.d);
+            if (Items) {
+                toastr.success("Order has been successfully " + Status);
+                if (Status != "Processing") {
+                    $("#btnChangeOrderStatus").css('display', 'none');
+                }
+                GetAllOrders();
+            }
+        },
+        error: function (xhr, status, err) {
+            toastr.error(xhr.responseJSON.Message);
+        }
+    });
 }

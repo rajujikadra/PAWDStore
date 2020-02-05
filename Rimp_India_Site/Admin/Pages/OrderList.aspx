@@ -47,8 +47,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card">
-                                         <div class="card-header">
-                                            <strong class="card-title">Order Details</strong>
+                                        <div class="card-header">
+                                            <strong class="card-title" id="CartTitles">Order Details</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -170,6 +170,9 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row" id="btnChangeOrderStatus" style="display: none;">
+                               
                             </div>
                         </div>
                     </div>

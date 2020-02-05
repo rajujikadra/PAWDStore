@@ -24,6 +24,7 @@
     <link href="../Content/toastr.min.css" rel="stylesheet" />
     <link href="../Content/jquery-ui.css" rel="stylesheet" />
     <link href="../Content/dataTables.jqueryui.min.css" rel="stylesheet" />
+     <link href="../assets/css/HoldOn.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -130,6 +131,7 @@
         <script src="../Admin/assets/js/plugins.js"></script>
         <script src="../Admin/assets/js/main.js"></script>
         <script src="../Scripts/toastr.min.js"></script>
+         <script src="../assets/js/HoldOn.js"></script>
         <script>
             (function ($) {
                 "use strict";

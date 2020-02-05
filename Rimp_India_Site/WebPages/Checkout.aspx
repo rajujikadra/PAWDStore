@@ -1,13 +1,16 @@
 ﻿<%@ Page Title="ConfirmOrder" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="Rimp_India_Site.WebPages.Checkout" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-      <script src="../Scripts/PageScript/checkout.js"></script>
+    <script src="../Scripts/PageScript/checkout.js"></script>
     <style>
         #checkoutDiv .form-group {
             margin: 12px 0 0 0 !important;
         }
     </style>
     <div class="container">
+        <div class="row" id="addressDiv">
+            
+        </div>
         <div class="row" id="checkoutDiv">
             <div class="col-lg-4">
                 <div class="card card-primary wow fadeInUp">
@@ -26,7 +29,7 @@
                         </div>
                         <div class="form-group label-floating" id="BMobileDiv">
                             <label for="inputEmail" class="control-label">Mobile</label>
-                            <input type="text" class="form-control" id="txtmobile" maxlength="10" onkeypress="return isNumberKey(event)"/>
+                            <input type="text" class="form-control" id="txtmobile" maxlength="10" onkeypress="return isNumberKey(event)" />
                         </div>
                         <div class="form-group label-floating" id="BAddressDiv">
                             <label for="inputSubject" class="control-label">Address</label>
@@ -47,7 +50,7 @@
                         <div class="form-group mt-1">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" id="chkBilling"/>
+                                    <input type="checkbox" id="chkBilling" />
                                     Shipping address same as billing
                                 </label>
                             </div>
@@ -72,7 +75,7 @@
                         </div>
                         <div class="form-group label-floating" id="SMobileDiv">
                             <label for="inputEmail" class="control-label">Mobile</label>
-                            <input type="email" class="form-control" id="txtSmobile" maxlength="10" onkeypress="return isNumberKey(event)"/>
+                            <input type="email" class="form-control" id="txtSmobile" maxlength="10" onkeypress="return isNumberKey(event)" />
                         </div>
                         <div class="form-group label-floating" id="SAddressDiv">
                             <label for="inputSubject" class="control-label">Address</label>

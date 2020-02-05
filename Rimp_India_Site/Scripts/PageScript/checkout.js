@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     GetCheckoutItems();
+    GetAllAddress();
 });
 function GetCheckoutItems() {
     $.ajax({
@@ -11,8 +12,8 @@ function GetCheckoutItems() {
         success: function (result) {
             var Item = JSON.parse(result.d);
             var CheckoutStr = "";
-            if (Item.length == 0) {
-
+            if (Item.length === 0) {
+                location.href = "/home";
             } else {
                 var SubTotal = 0;
                 for (var i = 0; i < Item.length; i++) {
@@ -71,31 +72,61 @@ function emailValidOrNot(value) {
 }
 $(document).on('change', '#chkBilling', function (e) {
     if ($(this).is(':checked')) {
-        $("#txtSname").attr('disabled', true);
-        $("#txtSemail").attr('disabled', true);
-        $("#txtSmobile").attr('disabled', true);
-        $("#textSaddress").attr('disabled', true);
-        $("#textScity").attr('disabled', true);
-        $("#textSstate").attr('disabled', true);
-        $("#textSzipcode").attr('disabled', true);
+        $("#SNameDiv").removeClass("label-floating is-empty has-error");
+        $("#SNameDiv").addClass("label-floating label-float");
+        $("#txtSname").val($("#txtName").val());
 
-        $("#SNameDiv").removeClass("has-error is-focused");
-        $("#SEmailDiv").removeClass("has-error is-focused");
-        $("#SMobileDiv").removeClass("has-error is-focused");
-        $("#SAddressDiv").removeClass("has-error is-focused");
-        $("#SCityDiv").removeClass("has-error is-focused");
-        $("#SStateDiv").removeClass("has-error is-focused");
-        $("#SZipcodeDiv").removeClass("has-error is-focused");
+        $("#SEmailDiv").removeClass("label-floating is-empty has-error");
+        $("#SEmailDiv").addClass("label-floating label-float");
+        $("#txtSemail").val($("#txtEmail").val());
 
+        $("#SMobileDiv").removeClass("label-floating is-empty has-error");
+        $("#SMobileDiv").addClass("label-floating label-float");
+        $("#txtSmobile").val($("#txtmobile").val());
 
+        $("#SAddressDiv").removeClass("label-floating is-empty has-error");
+        $("#SAddressDiv").addClass("label-floating label-float");
+        $("#txtSaddress").val($("#textAddress").val());
+
+        $("#SCityDiv").removeClass("label-floating is-empty has-error");
+        $("#SCityDiv").addClass("label-floating label-float");
+        $("#textScity").val($("#textCity").val());
+
+        $("#SStateDiv").removeClass("label-floating is-empty has-error");
+        $("#SStateDiv").addClass("label-floating label-float");
+        $("#textSstate").val($("#textState").val());
+
+        $("#SZipcodeDiv").removeClass("label-floating is-empty has-error");
+        $("#SZipcodeDiv").addClass("label-floating label-float");
+        $("#textSzipcode").val($("#textZipcode").val());
     } else {
-        $("#txtSname").attr('disabled', false);
-        $("#txtSemail").attr('disabled', false);
-        $("#txtSmobile").attr('disabled', false);
-        $("#textSaddress").attr('disabled', false);
-        $("#textScity").attr('disabled', false);
-        $("#textSstate").attr('disabled', false);
-        $("#textSzipcode").attr('disabled', false);
+        $("#SNameDiv").removeClass("label-floating label-float");
+        $("#SNameDiv").addClass("label-floating is-empty");       
+        $("#txtSname").val("");
+
+        $("#SEmailDiv").removeClass("label-floating label-float");
+        $("#SEmailDiv").addClass("label-floating is-empty");
+        $("#txtSemail").val("");
+
+        $("#SMobileDiv").removeClass("label-floating label-float");
+        $("#SMobileDiv").addClass("label-floating is-empty");
+        $("#txtSmobile").val("");
+
+        $("#SAddressDiv").removeClass("label-floating label-float");
+        $("#SAddressDiv").addClass("label-floating is-empty");
+        $("#txtSaddress").val("");
+
+        $("#SCityDiv").removeClass("label-floating label-float");
+        $("#SCityDiv").addClass("label-floating is-empty");
+        $("#textScity").val("");
+
+        $("#SStateDiv").removeClass("label-floating label-float");
+        $("#SStateDiv").addClass("label-floating is-empty");
+        $("#textSstate").val("");
+
+        $("#SZipcodeDiv").removeClass("label-floating label-float");
+        $("#SZipcodeDiv").addClass("label-floating is-empty");
+        $("#textSzipcode").val("");
     }
 });
 function PlaceOrder() {
@@ -236,3 +267,124 @@ function PlaceOrder() {
         }
     }
 }
+
+function GetAllAddress() {
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "/WebPages/Checkout.aspx/GetAllAddress",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var Item = JSON.parse(result.d);
+            if (Item.length > 0) {
+                var str = '';
+                for (var i = 0; i < Item.length; i++) {
+                    str += '<div class="col-md-4">';
+                    str += '<div class="card card-success">';
+                    str += '<div class="card-header"><h3 class="card-title">Address ' + i + '</h3></div>';
+                    str += '<div class="card-body">';
+                    str += '<table class="table table-no-border table-striped">';
+                    str += '<tbody><tr><td style="width: 50%;"><b>Name </b></td><td>' + Item[i].BName + '</td></tr></tbody>';
+                    str += '<tbody><tr><td style="width: 50%;"><b>Email </b></td><td>' + Item[i].BEmail + '</td></tr></tbody>';
+                    str += '<tbody><tr><td style="width: 50%;"><b>Address </b></td><td>' + Item[i].BAddress + '</td></tr></tbody>';
+                    str += '<tbody><tr><td style="width: 50%;"><b>Select Address </b></td><td> <div class="checkbox"><label><input type="checkbox" class="subject-list" value=' + Item[i].User_Address_ID + ' /></label></div></td></tr></tbody>';
+                    str += '</table>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                }
+                //onchange="SelectAddress(this, \'' + Item[i].User_Address_ID + '\')"
+                $("#addressDiv").empty();
+                $("#addressDiv").append(str);
+            } else {
+                $("#addressDiv").css('display', 'none');
+            }
+        },
+        error: function (response) {
+            IsValid = false;
+        }
+    });
+}
+
+//function SelectAddress(obj, UserAddressID) {
+//    if (obj.checked) {
+
+//    }
+//}
+$(document).on('change','.subject-list', function () {
+    $('.subject-list').not(this).prop('checked', false);
+    if (this.checked) {
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/WebPages/Checkout.aspx/GetAddressByID",
+            data: JSON.stringify({ User_Address_ID: this.value }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var Item = JSON.parse(result.d);
+                if (Item !== null) {
+                    $("#SNameDiv").removeClass("label-floating is-empty has-error");
+                    $("#SNameDiv").addClass("label-floating label-float");
+                    $("#txtSname").val(Item.SName);
+
+                    $("#SEmailDiv").removeClass("label-floating is-empty has-error");
+                    $("#SEmailDiv").addClass("label-floating label-float");
+                    $("#txtSemail").val(Item.SEmail);
+
+                    $("#SMobileDiv").removeClass("label-floating is-empty has-error");
+                    $("#SMobileDiv").addClass("label-floating label-float");
+                    $("#txtSmobile").val(Item.SMobile);
+
+                    $("#SAddressDiv").removeClass("label-floating is-empty has-error");
+                    $("#SAddressDiv").addClass("label-floating label-float");
+                    $("#txtSaddress").val(Item.SAddress);
+
+                    $("#SCityDiv").removeClass("label-floating is-empty has-error");
+                    $("#SCityDiv").addClass("label-floating label-float");
+                    $("#textScity").val(Item.SCity);
+
+                    $("#SStateDiv").removeClass("label-floating is-empty has-error");
+                    $("#SStateDiv").addClass("label-floating label-float");
+                    $("#textSstate").val(Item.SState);
+
+                    $("#SZipcodeDiv").removeClass("label-floating is-empty has-error");
+                    $("#SZipcodeDiv").addClass("label-floating label-float");
+                    $("#textSzipcode").val(Item.SZipcode);
+                }
+            },
+            error: function (response) {
+                IsValid = false;
+            }
+        });
+    } else {
+        $("#SNameDiv").removeClass("label-floating label-float");
+        $("#SNameDiv").addClass("label-floating is-empty");
+        $("#txtSname").val("");
+
+        $("#SEmailDiv").removeClass("label-floating label-float");
+        $("#SEmailDiv").addClass("label-floating is-empty");
+        $("#txtSemail").val("");
+
+        $("#SMobileDiv").removeClass("label-floating label-float");
+        $("#SMobileDiv").addClass("label-floating is-empty");
+        $("#txtSmobile").val("");
+
+        $("#SAddressDiv").removeClass("label-floating label-float");
+        $("#SAddressDiv").addClass("label-floating is-empty");
+        $("#txtSaddress").val("");
+
+        $("#SCityDiv").removeClass("label-floating label-float");
+        $("#SCityDiv").addClass("label-floating is-empty");
+        $("#textScity").val("");
+
+        $("#SStateDiv").removeClass("label-floating label-float");
+        $("#SStateDiv").addClass("label-floating is-empty");
+        $("#textSstate").val("");
+
+        $("#SZipcodeDiv").removeClass("label-floating label-float");
+        $("#SZipcodeDiv").addClass("label-floating is-empty");
+        $("#textSzipcode").val("");
+    }
+});

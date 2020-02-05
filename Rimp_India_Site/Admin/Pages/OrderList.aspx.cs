@@ -85,8 +85,20 @@ namespace Rimp_India_Site.Admin.Pages
                     Quantity = c.Quantity,
                     ProductShortDescription = c.Product_Master.Product_short_description
                 }).ToList()
-            }).FirstOrDefault();            
+            }).FirstOrDefault();
             return JsonConvert.SerializeObject(Items);
+        }
+        [WebMethod]
+        public static string ChangeOrderStatus(int Order_ID, string Status)
+        {
+            Rimp_India_DBEntities context = new Rimp_India_DBEntities();
+            var Order = context.Order_Master.FirstOrDefault(x => x.Order_ID == Order_ID);
+            if (Order != null)
+            {
+                Order.Order_Status = Status;
+                context.SaveChanges();
+            }
+            return JsonConvert.SerializeObject(true);
         }
     }
 }

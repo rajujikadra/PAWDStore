@@ -29,7 +29,7 @@ namespace Rimp_India_Site.WebPages
                 int UserID = (HttpContext.Current.Session["User"] as AdminLoginMaster).User_ID;
                 Random generator = new Random();
                 string Order_NO = generator.Next(0, 999999).ToString("D6");
-              
+
                 if (model.User_Address_ID == 0)
                 {
                     var address = new User_Address_Master
@@ -84,6 +84,46 @@ namespace Rimp_India_Site.WebPages
             {
                 return JsonConvert.SerializeObject(0);
             }
+        }
+
+        [WebMethod]
+        public static string GetAllAddress()
+        {
+            Rimp_India_DBEntities context = new Rimp_India_DBEntities();
+            int UserID = (HttpContext.Current.Session["User"] as AdminLoginMaster).User_ID;
+            var data = context.User_Address_Master.Where(x => x.User_ID == UserID).Select(y => new OrderViewModel()
+            {
+                BName = y.BName,
+                BEmail = y.BEmail,
+                BAddress = y.BAddress,
+                BMobile = y.BMobile,
+                User_Address_ID = y.User_Address_ID
+            }).ToList();
+            return JsonConvert.SerializeObject(data);
+        }
+        [WebMethod]
+        public static string GetAddressByID(int User_Address_ID)
+        {
+            Rimp_India_DBEntities context = new Rimp_India_DBEntities();
+            var address = context.User_Address_Master.Where(x => x.User_Address_ID == User_Address_ID).Select(x => new OrderItemsViewModel()
+            {
+                BName = x.BName,
+                BAddress = x.BAddress,
+                BCity = x.BCity,
+                BEmail = x.BEmail,
+                BMobile = x.BMobile,
+                BState = x.BState,
+                BZipcode = x.BZipcode,
+                SName = x.SName,
+                SCity = x.SCity,
+                SAddress = x.SAddress,
+                SEmail = x.SEmail,
+                SMobile = x.SMobile,
+                SState = x.SState,
+                SZipcode = x.SZipcode,
+                User_Address_ID = x.User_Address_ID                
+            }).FirstOrDefault();
+            return JsonConvert.SerializeObject(address);
         }
     }
 }
