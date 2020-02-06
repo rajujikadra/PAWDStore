@@ -93,6 +93,7 @@ namespace Rimp_India_Site
             {
                 Session["UserName"] = null;
                 Session["User"] = null;
+                Session["IsAdmin"] = null;
                 Response.RedirectToRoute("home", null);
             }
             catch (Exception ex)

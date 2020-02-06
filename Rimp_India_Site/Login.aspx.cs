@@ -28,6 +28,7 @@ namespace Rimp_India_Site
                     {
                         Session["User"] = User;
                         Session["UserName"] = User.UserName;
+                        Session["IsAdmin"] = User.IsAdmin;
                         Response.RedirectToRoute("home");
                     }
                     else

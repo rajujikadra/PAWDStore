@@ -60,7 +60,7 @@
         .custom-nav ul {
             padding-left: 0;
             list-style: none;
-            margin:0px;
+            margin: 0px;
         }
 
             .custom-nav ul li {
@@ -73,7 +73,7 @@
                     color: #fff !important;
                 }
 
-       #LoginMenu .btn-circle.btn-circle-primary:before {
+        #LoginMenu .btn-circle.btn-circle-primary:before {
             background-color: #fff !important;
         }
 
@@ -106,10 +106,12 @@
             background-color: #03a9f4;
             color: #fff !important;
         }
+
         .custom-nav .user-login-menu a {
             font-size: 16px !important;
             padding: 12px 20px;
         }
+
         .user-login-menu .dropdown-toggle::after {
             display: inline-block;
             width: 0;
@@ -121,24 +123,28 @@
             border-right: .3em solid transparent;
             border-bottom: 0;
             border-left: .3em solid transparent;
-            
         }
+
         .custom-nav .user-login-menu .dropdown-menu {
-            width:138px;
+            width: 138px;
         }
-        .custom-nav .user-login-menu .dropdown-menu.show a {
-            color:#808080 !important;
-            padding:3px 15px;
+
+            .custom-nav .user-login-menu .dropdown-menu.show a {
+                color: #808080 !important;
+                padding: 3px 15px;
+            }
+
+                .custom-nav .user-login-menu .dropdown-menu.show a:hover {
+                    color: #03a9f4 !important;
+                }
+
+        .custom-nav .user-login-menu a:hover, .custom-nav .user-login-menu.show a {
+            background-color: #fff;
+            color: #03a9f4 !important;
         }
-        .custom-nav .user-login-menu .dropdown-menu.show a:hover {
-            color:#03a9f4 !important;
-        }
-        .custom-nav .user-login-menu a:hover,.custom-nav .user-login-menu.show a{
-            background-color:#fff;
-            color:#03a9f4 !important;
-        }
-        .swal-button--confirm{
-            background-color : #03a9f4 !important;
+
+        .swal-button--confirm {
+            background-color: #03a9f4 !important;
         }
     </style>
 </head>
@@ -181,11 +187,22 @@
                                 </a>
                             </li>
                             <li runat="server" id="UserLoginMenu" class="nav-item dropdown user-login-menu">
-                                <a class="nav-link dropdown-toggle animated fadeIn animation-delay-7" href="#" id="navbarDropdown"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= Session["UserName"] %>
+                                <a class="nav-link dropdown-toggle animated fadeIn animation-delay-7" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= Session["UserName"] %>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="<%: GetRouteUrl("myorders", null) %>">My Order</a>
                                     <a class="dropdown-item" href="<%: GetRouteUrl("profile", null) %>">My Profile</a>
+                                    <%
+                                        if (Session["IsAdmin"] != null)
+                                        {
+                                            if ((bool)Session["IsAdmin"] == true)
+                                            {
+                                    %>
+                                    <a class="dropdown-item" href="<%: GetRouteUrl("dashboard", null) %>">Admin Panel</a>
+                                    <%
+                                            }
+                                        }
+                                    %>
                                     <div class="dropdown-divider"></div>
                                     <asp:LinkButton ID="Logiutbtn" runat="server" OnClick="Logiutbtn_Click" CssClass="nav-link">Logout</asp:LinkButton>
                                 </div>
