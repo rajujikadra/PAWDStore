@@ -105,9 +105,8 @@ function bind_specification(ID) {
         dataType: "json",
         success: function (res) {
             var status = JSON.parse(res.d);
-            debugger;
             var specification_string = "";
-            if (all_spec_group.length > 0) {
+            if (status.length > 0) {
 
                 specification_string += '<table class="table table-no-border table-striped">' +
                     '<thead><tr><th style="color:#a92e09;"></th></tr></thead>';
