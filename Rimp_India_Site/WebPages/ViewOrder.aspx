@@ -219,7 +219,11 @@
                     str += '<div class="col-xl-9">';
                     str += '<h3 class="no-mt"><a target="_blank" href="product?ID=' + data.OrderItem[i].Product_ID + '">' + data.OrderItem[i].Product_Title + '</a></h3>';
                     str += '<p>' + data.OrderItem[i].ProductShortDescription + '</p>';
-                    str += '<ul class="list-unstyled"><li><strong>Quantity: </strong>' + data.OrderItem[i].Quantity + '</li></ul><h4 class="color-success no-m text-normal">₹ ' + addCommas(Total) + '</h4>';
+                    str += '<ul class="list-unstyled"><li><strong>Quantity: </strong>' + data.OrderItem[i].Quantity + '</li>';
+                    if (data.OrderItem[i].ProductSize.trim() != "" && data.OrderItem[i].ProductSize.trim() != null && data.OrderItem[i].ProductSize.trim() != undefined) {
+                        str += '<li><strong>Size: </strong>' + data.OrderItem[i].ProductSize + '</li>';
+                    }
+                    str += '</ul><h4 class="color-success no-m text-normal">₹ ' + addCommas(Total) + '</h4>';
                     str += '</div>';
                     str += '</div>';
                     str += '</div>';

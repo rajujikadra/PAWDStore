@@ -2,7 +2,10 @@
 using Rimp_India_Site.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -73,11 +76,13 @@ namespace Rimp_India_Site.WebPages
                     Order_ID = obj.Order_ID,
                     Quantity = x.Quantity,
                     Price = x.Product_Master.Product_Price,
+                    Size = x.Size,
                     Product_ID = x.Product_ID
                 }).ToList();
                 context.Order_Item_Master.AddRange(Items);
                 context.Cart_Master.RemoveRange(CartItem);
                 context.SaveChanges();
+
                 return JsonConvert.SerializeObject(obj.Order_ID);
             }
             catch (Exception ex)
@@ -124,6 +129,24 @@ namespace Rimp_India_Site.WebPages
                 User_Address_ID = x.User_Address_ID                
             }).FirstOrDefault();
             return JsonConvert.SerializeObject(address);
+        }
+
+        public void SendConfirmationMail()
+        {
+            MailMessage message = new MailMessage();
+            SmtpClient smtp = new SmtpClient();
+            message.From = new MailAddress(ConfigurationManager.AppSettings["FromEmail"]);
+            message.To.Add(new MailAddress("ToMailAddress"));
+            message.Subject = "Test";
+            message.IsBodyHtml = true; //to make message body as html  
+            message.Body = "<p>Hello</p>";
+            smtp.Port = 587;
+            smtp.Host = "smtp.gmail.com"; //for gmail host  
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["FromEmail"], ConfigurationManager.AppSettings["Password"]);
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Send(message);
         }
     }
 }

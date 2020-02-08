@@ -19,6 +19,7 @@ namespace Rimp_India_Site.Models
         public Nullable<int> Product_ID { get; set; }
         public Nullable<int> Quantity { get; set; }
         public Nullable<decimal> Price { get; set; }
+        public string Size { get; set; }
     
         public virtual Order_Master Order_Master { get; set; }
         public virtual Product_Master Product_Master { get; set; }

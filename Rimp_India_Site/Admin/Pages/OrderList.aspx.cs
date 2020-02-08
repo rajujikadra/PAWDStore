@@ -83,6 +83,7 @@ namespace Rimp_India_Site.Admin.Pages
                     Product_Price = c.Price,
                     Product_Title = c.Product_Master.Product_Title,
                     Quantity = c.Quantity,
+                    ProductSize = c.Size,
                     ProductShortDescription = c.Product_Master.Product_short_description
                 }).ToList()
             }).FirstOrDefault();

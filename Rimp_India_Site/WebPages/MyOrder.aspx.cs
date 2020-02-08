@@ -34,7 +34,7 @@ namespace Rimp_India_Site.WebPages
                 OrderDate = x.CreatedDate,
                 Order_No = x.Order_No,
                 BEmail = x.User_Address_Master.BEmail
-            }).ToList();
+            }).OrderByDescending(y => y.Order_ID).ToList();
             return JsonConvert.SerializeObject(Order);
         }
     }

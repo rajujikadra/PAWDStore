@@ -47,5 +47,6 @@ namespace Rimp_India_Site.Models
         public int? Quantity { get; set; }
         public int? Order_ID { get; set; }
         public string ProductShortDescription { get; set; }
+        public string ProductSize { get; set; }
     }
 }

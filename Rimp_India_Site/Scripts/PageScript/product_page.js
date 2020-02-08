@@ -4,6 +4,7 @@ $(document).ready(function () {
 });
 
 function Product_data_bind(product_data) {
+    debugger;
     var bind_product_datas = "";
     if (product_data != null) {
         bind_product_datas += '<div class="card-body">' +
@@ -12,9 +13,26 @@ function Product_data_bind(product_data) {
             '<p>' + product_data.Product_long_description + '</p>' +
             '<ul class="list-unstyled">' +
             '<li><strong> Category: </strong > ' + product_data.ThirdCategory_Name + '</li>' +
-            '<li>' +
-            '<strong>Number of items: </strong>' +
-            '<div class="form form-inline input-number">' +
+            '<li>';
+        debugger;
+        if (product_data.SubCategory_Name.toLowerCase().includes('clothe')) {
+            bind_product_datas += '<div class="form-group row">';
+            bind_product_datas += '<strong>Select Size: </strong>';
+            bind_product_datas += '<div class="col-lg-9" style="margin-top: -19px;">';
+            bind_product_datas += '<select id="select_size" class="form-control selectpicker" data-dropup-auto="false">';
+            bind_product_datas += '<option value="">-- Select Size --</option>';
+            bind_product_datas += '<option value="S">S</option>';
+            bind_product_datas += '<option value="M">M</option>';
+            bind_product_datas += '<option value="L">L</option>';
+            bind_product_datas += '<option value="XL">XL</option>';
+            bind_product_datas += '<option  value="XXL">XXL</option>';
+            bind_product_datas += '</select>';
+            bind_product_datas += '<span id="msgSize" style="display:none; color: #f44336;">Please select size for your product</span>';
+            bind_product_datas += '</div>';
+            bind_product_datas += '</div>';
+        }
+
+        bind_product_datas += '<strong>Number of items: </strong><div class="form form-inline input-number">' +
             '<button onclick="DecreaseQty()" class="btn-circle btn-circle-primary btn-circle-xs" type="button"><i class="fa fa-minus"></i></button>' +
             '<input type="text" class="form-control form-control-number" pattern="[0-9]*"  onkeypress="return isNumberOrNot(event)" id="txtQuantity" value="1">' +
             '<button onclick="IncreaseQty()" class="btn-circle btn-circle-primary btn-circle-xs" type="button"><i class="fa fa-plus"></i></button>' +
@@ -28,7 +46,7 @@ function Product_data_bind(product_data) {
             ' <span class="ms-tag ms-tag-success">in stock</span>' +
             '</li>' +
             '</ul>' +
-            ' <a href="javascript:void(0)" onclick="AddProductInCart(\'' + product_data.Product_Title + '\',\'' + product_data.Product_ID + '\')" class="btn btn-primary btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
+            ' <a href="javascript:void(0)" onclick="AddProductInCart(\'' + product_data.Product_Title + '\',\'' + product_data.Product_ID + '\',\'' + product_data.SubCategory_Name + '\')" class="btn btn-primary btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
             '</div>';
     }
     $("#bind_product_data").append(bind_product_datas);
@@ -214,7 +232,7 @@ function isNumberOrNot(evt) {
     return true;
 }
 
-function AddProductInCart(Title, ProductID) {
+function AddProductInCart(Title, ProductID, SubCategory) {
     swal({
         title: Title,
         text: "Are you sure you want to add this product in cart ?",
@@ -223,6 +241,20 @@ function AddProductInCart(Title, ProductID) {
         dangerMode: false
     }).then(function (willDelete) {
         if (willDelete) {
+            debugger;
+            var size = "";
+            if (SubCategory.toLowerCase().includes("clothe")) {
+                if ($("#select_size").val() === "" || $("#select_size").val() === null || $("#select_size").val() === undefined) {
+                    $("#msgSize").css('display', 'block');
+                    $('html, body').animate({
+                        scrollTop: $("#msgSize").parent().offset().top - 160
+                    }, 500);
+                    return false;
+                }
+                else {
+                    size = $("#select_size").val().trim();
+                }
+            }
             HoldOn.open();
             $.ajax({
                 async: false,
@@ -237,7 +269,9 @@ function AddProductInCart(Title, ProductID) {
                             type: "POST",
                             url: "/Default.aspx/AddProductInCart",
                             data: JSON.stringify({
-                                Product_ID: ProductID, Qty: $("#txtQuantity").val()
+                                Product_ID: ProductID,
+                                Qty: $("#txtQuantity").val(),
+                                Size: size
                             }),
                             async: false,
                             contentType: "application/json; charset=utf-8",
@@ -263,3 +297,13 @@ function AddProductInCart(Title, ProductID) {
         }
     });
 }
+
+
+$(document).on('change', "#select_size", function () {
+    if (this.value != "" && this.value != null && this.value != undefined) {
+        $("#msgSize").css('display', 'none');
+    }
+    else {
+        $("#msgSize").css('display', 'block');
+    }
+})

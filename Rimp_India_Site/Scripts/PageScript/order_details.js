@@ -18,7 +18,12 @@ function GetOrderDetails(data, OID) {
             str += '<div class="col-xl-9">';
             str += '<h3 class="no-mt"><a href="product?ID=' + data.OrderItems[i].Product_ID + '">' + data.OrderItems[i].Product_Title + '</a></h3>';
             str += '<p>' + data.OrderItems[i].ProductShortDescription + '</p>';
-            str += '<ul class="list-unstyled"><li><strong>Quantity: </strong>' + data.OrderItems[i].Quantity + '</li></ul><h4 class="color-success no-m text-normal">₹ ' + addCommas(Total) + '</h4>';
+          
+            str += '<ul class="list-unstyled"><li><strong>Quantity: </strong>' + data.OrderItems[i].Quantity + '</li>';
+            if (data.OrderItems[i].ProductSize.trim() != "" && data.OrderItems[i].ProductSize.trim() != null && data.OrderItems[i].ProductSize.trim() != undefined) {
+                str += '<li><strong>Size: </strong>' + data.OrderItems[i].ProductSize + '</li>';
+            }
+            str += '</ul><h4 class="color-success no-m text-normal">₹ ' + addCommas(Total) + '</h4>';
             str += '</div>';
             str += '</div>';
             str += '</div>';

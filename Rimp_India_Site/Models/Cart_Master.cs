@@ -19,6 +19,7 @@ namespace Rimp_India_Site.Models
         public Nullable<int> Product_ID { get; set; }
         public Nullable<int> Quantity { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string Size { get; set; }
     
         public virtual AdminLoginMaster AdminLoginMaster { get; set; }
         public virtual Product_Master Product_Master { get; set; }

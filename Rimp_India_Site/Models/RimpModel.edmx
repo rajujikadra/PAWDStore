@@ -23,6 +23,7 @@
           <Property Name="Cart_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="User_ID" Type="int" />
           <Property Name="Product_ID" Type="int" />
+          <Property Name="Size" Type="varchar" MaxLength="50" />
           <Property Name="Quantity" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
@@ -79,6 +80,7 @@
           <Property Name="Order_Item_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Order_ID" Type="int" />
           <Property Name="Product_ID" Type="int" />
+          <Property Name="Size" Type="varchar" MaxLength="50" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
@@ -1457,6 +1459,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AdminLoginMaster" Relationship="Rimp_India_DBModel.FK_UserKey" FromRole="Cart_Master" ToRole="AdminLoginMaster" />
           <NavigationProperty Name="Product_Master" Relationship="Rimp_India_DBModel.FK_ProductKey" FromRole="Cart_Master" ToRole="Product_Master" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Order_Item_Master">
           <Key>
@@ -1469,6 +1472,7 @@
           <NavigationProperty Name="Order_Master" Relationship="Rimp_India_DBModel.FK_OrderRef" FromRole="Order_Item_Master" ToRole="Order_Master" />
           <NavigationProperty Name="Product_Master" Relationship="Rimp_India_DBModel.FK_ProductRefe" FromRole="Order_Item_Master" ToRole="Product_Master" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Order_Master">
           <Key>
@@ -1991,6 +1995,7 @@
           <EntitySetMapping Name="Cart_Master">
             <EntityTypeMapping TypeName="Rimp_India_DBModel.Cart_Master">
               <MappingFragment StoreEntitySet="Cart_Master">
+                <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
@@ -2002,6 +2007,7 @@
           <EntitySetMapping Name="Order_Item_Master">
             <EntityTypeMapping TypeName="Rimp_India_DBModel.Order_Item_Master">
               <MappingFragment StoreEntitySet="Order_Item_Master">
+                <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />

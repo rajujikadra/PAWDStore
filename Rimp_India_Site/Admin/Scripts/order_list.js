@@ -84,7 +84,12 @@ function ViewOrder(Order_ID) {
                         SubTotal = SubTotal + (parseInt(Items.OrderItem[i].Product_Price) * parseInt(Items.OrderItem[i].Quantity));
                         str += '<tr>';
                         str += '<td><img style="height: 80px; width: 95px;" src="../ProductImage/' + Items.OrderItem[i].ImageName + '" onError="imgError(this);" /></td>';
-                        str += ' <td><a target="_blank" href="product?ID=' + Items.OrderItem[i].Product_ID + '">' + Items.OrderItem[i].Product_Title + '</a></td>';
+                        str += ' <td>';
+                        str += '<a target="_blank" href="product?ID=' + Items.OrderItem[i].Product_ID + '">' + Items.OrderItem[i].Product_Title + '</a>';
+                        if (Items.OrderItem[i].ProductSize != null && Items.OrderItem[i].ProductSize != "" && Items.OrderItem[i].ProductSize != undefined) {
+                            str += '<br /><p>Size : ' + Items.OrderItem[i].ProductSize + '</p>';
+                        }
+                        str += '</td>';
                         str += '<td>' + Items.OrderItem[i].Quantity + '</td>';
                         str += '<td>₹ ' + addCommas(Total) + '</td>';
                         str += '</tr>';

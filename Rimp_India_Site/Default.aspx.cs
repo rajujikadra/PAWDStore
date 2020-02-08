@@ -234,7 +234,7 @@ namespace Rimp_India_Site
         }
 
         [WebMethod]
-        public static string AddProductInCart(int Product_ID, int Qty)
+        public static string AddProductInCart(int Product_ID, int Qty, string Size)
         {
             Rimp_India_DBEntities context = new Rimp_India_DBEntities();
             int User_ID = (HttpContext.Current.Session["User"] as AdminLoginMaster).User_ID;
@@ -246,6 +246,7 @@ namespace Rimp_India_Site
                     Product_ID = Product_ID,
                     User_ID = User_ID,
                     Quantity = Qty,
+                    Size = !string.IsNullOrEmpty(Size) ? Size : string.Empty,
                     CreatedDate = DateTime.Now
                 };
                 context.Cart_Master.Add(obj);
