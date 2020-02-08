@@ -507,7 +507,7 @@ function get_all_hotProducts() {
                         '<h4 class="text-normal text-center"  style="height: 42px; overflow: hidden;">' + data[i].Product_Title + '</h4>' +
                         '<p style="overflow: hidden;height: 54px;">' + data[i].Product_short_description + '</p>' +
                         '<div class="mt-2"><span class="ms-tag ms-tag-success" style="font-size: 20px;">₹ ' + addCommas(data[i].Product_Price) + '</span></div>' +
-                        '<a href="javascript:void(0)" onclick="AddToCart(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\')" class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
+                        '<a href="javascript:void(0)" onclick="AddToCart(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\',\'' + data[i].SubCategory_Name + '\')" class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb"><i class="fa fa-shopping-cart"></i>Add to cart</a>' +
                         '</div>' +
                         '</div>' +
                         '</div>';
@@ -548,7 +548,7 @@ function CheckUserLoginOrNot() {
     });
 }
 
-function AddToCart(Title, ProductID) {
+function AddToCart(Title, ProductID, SubCategory_Name) {
     swal({
         title: Title,
         text: "Are you sure you want to add this product in cart ?",
@@ -557,6 +557,10 @@ function AddToCart(Title, ProductID) {
         dangerMode: false
     }).then(function (willDelete) {
         if (willDelete) {
+            var size = "";
+            if (SubCategory_Name.toLowerCase().includes("clothe")) {
+                size = "M";
+            }
             HoldOn.open();
             $.ajax({
                 async: false,
@@ -570,7 +574,7 @@ function AddToCart(Title, ProductID) {
                         $.ajax({
                             type: "POST",
                             url: "/Default.aspx/AddToCart",
-                            data: JSON.stringify({ Product_ID: ProductID }),
+                            data: JSON.stringify({ Product_ID: ProductID, Size: size }),
                             async: false,
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",

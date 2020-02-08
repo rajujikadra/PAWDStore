@@ -195,7 +195,7 @@ namespace Rimp_India_Site
             return JsonConvert.SerializeObject(false);
         }
         [WebMethod]
-        public static string AddToCart(int Product_ID)
+        public static string AddToCart(int Product_ID, string Size)
         {
             Rimp_India_DBEntities context = new Rimp_India_DBEntities();
             int User_ID = (HttpContext.Current.Session["User"] as AdminLoginMaster).User_ID;
@@ -207,6 +207,7 @@ namespace Rimp_India_Site
                     Product_ID = Product_ID,
                     User_ID = User_ID,
                     Quantity = 1,
+                    Size = Size,
                     CreatedDate = DateTime.Now
                 };
                 context.Cart_Master.Add(obj);

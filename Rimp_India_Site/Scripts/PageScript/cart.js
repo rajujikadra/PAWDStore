@@ -28,7 +28,11 @@ function GetCartItems() {
                     CartStr += '<table class="table table-responsive table-no-border vertical-center">';
                     CartStr += '<tr>';
                     CartStr += '<td class="d-none d-sm-block"><img class="ImageClass" src="../ProductImage/' + Item[i].ProductImage + '" alt=""  onError="imgError(this);"/></td>';
-                    CartStr += '<td style="width: 305px;"><h4 class=""><a target="_blank" href="product?ID=' + Item[i].Product_ID + '">' + Item[i].Product_Title + '</a></h4></td>';
+                    CartStr += '<td style="width: 305px;"><h4 class=""><a target="_blank" href="product?ID=' + Item[i].Product_ID + '">' + Item[i].Product_Title + '</a></h4>';
+                    if (Item[i].Size != "" && Item[i].Size != null && Item[i].Size != undefined) {
+                        CartStr += '<br /><p>Size : ' + Item[i].Size + '</p>'
+                    }
+                    CartStr += '</td>';
                     CartStr += '<td><div class="form-inline input-number"><input type="text" onchange="UpdateQuantity(this,\'' + Item[i].Quantity + '\',\'' + Item[i].Cart_ID + '\')" onkeypress="return isNumberOrNot(event)" class="form-control form-control-number" value="' + Item[i].Quantity + '" /></div></td>';
                     CartStr += '<td><span class="color-primary">₹ ' + addCommas(Item[i].Product_Price * Item[i].Quantity) + '</span></td>';
                     CartStr += '<td class="d-none d-sm-block">';

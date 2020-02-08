@@ -229,6 +229,7 @@ function PlaceOrder() {
         if ($("input:radio[name=paymentMethod]:checked").length === 0) {
             swal("Warning", "Please select payment method.", "warning");
         } else {
+          
             var obj = {
                 BName: BName,
                 BEmail: BEmail,
@@ -249,14 +250,18 @@ function PlaceOrder() {
                 User_Address_ID: User_Address_ID
             };
             $.ajax({
-                async: false,
+                async: true,
                 type: "POST",
                 url: "/WebPages/Checkout.aspx/PlaceOrder",
                 data: JSON.stringify({ model: obj }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
+                beforeSend: function () {
+                    HoldOn.open();
+                },
                 success: function (result) {
                     var ID = JSON.parse(result.d);
+                    HoldOn.close();
                     if (ID > 0) {
                         location.href = "/order_details?ID=" + ID;
                     }

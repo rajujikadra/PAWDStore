@@ -1395,6 +1395,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RimpModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SendMail.cs" />
     <Compile Include="Models\Specification_Group_Master.cs">
       <DependentUpon>RimpModel.tt</DependentUpon>
     </Compile>

@@ -82,7 +82,7 @@ namespace Rimp_India_Site.WebPages
                 context.Order_Item_Master.AddRange(Items);
                 context.Cart_Master.RemoveRange(CartItem);
                 context.SaveChanges();
-
+                SendMail.SendConfirmationMail(model, obj, Items);
                 return JsonConvert.SerializeObject(obj.Order_ID);
             }
             catch (Exception ex)
@@ -126,27 +126,10 @@ namespace Rimp_India_Site.WebPages
                 SMobile = x.SMobile,
                 SState = x.SState,
                 SZipcode = x.SZipcode,
-                User_Address_ID = x.User_Address_ID                
+                User_Address_ID = x.User_Address_ID
             }).FirstOrDefault();
             return JsonConvert.SerializeObject(address);
         }
 
-        public void SendConfirmationMail()
-        {
-            MailMessage message = new MailMessage();
-            SmtpClient smtp = new SmtpClient();
-            message.From = new MailAddress(ConfigurationManager.AppSettings["FromEmail"]);
-            message.To.Add(new MailAddress("ToMailAddress"));
-            message.Subject = "Test";
-            message.IsBodyHtml = true; //to make message body as html  
-            message.Body = "<p>Hello</p>";
-            smtp.Port = 587;
-            smtp.Host = "smtp.gmail.com"; //for gmail host  
-            smtp.EnableSsl = true;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["FromEmail"], ConfigurationManager.AppSettings["Password"]);
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.Send(message);
-        }
     }
 }

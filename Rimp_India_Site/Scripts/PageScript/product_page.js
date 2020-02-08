@@ -4,7 +4,7 @@ $(document).ready(function () {
 });
 
 function Product_data_bind(product_data) {
-    debugger;
+    
     var bind_product_datas = "";
     if (product_data != null) {
         bind_product_datas += '<div class="card-body">' +
@@ -14,7 +14,7 @@ function Product_data_bind(product_data) {
             '<ul class="list-unstyled">' +
             '<li><strong> Category: </strong > ' + product_data.ThirdCategory_Name + '</li>' +
             '<li>';
-        debugger;
+        
         if (product_data.SubCategory_Name.toLowerCase().includes('clothe')) {
             bind_product_datas += '<div class="form-group row">';
             bind_product_datas += '<strong>Select Size: </strong>';
@@ -241,7 +241,6 @@ function AddProductInCart(Title, ProductID, SubCategory) {
         dangerMode: false
     }).then(function (willDelete) {
         if (willDelete) {
-            debugger;
             var size = "";
             if (SubCategory.toLowerCase().includes("clothe")) {
                 if ($("#select_size").val() === "" || $("#select_size").val() === null || $("#select_size").val() === undefined) {

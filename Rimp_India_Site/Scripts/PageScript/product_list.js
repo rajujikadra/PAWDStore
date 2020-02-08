@@ -124,7 +124,7 @@ function BindAllProducts(data) {
             '<div class="mt-2">' +
             '<span class="ms-tag ms-tag-success" style="font-size: 20px;">₹ ' + addCommas(data[i].Product_Price) + '</span>' +
             '</div>' +
-            '<a href="javascript:void(0)" onclick="AddToCart(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\')"  class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb">' +
+            '<a href="javascript:void(0)" onclick="AddToCart(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\',\'' + data[i].SubCategory_Name + '\')"  class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb">' +
             ' <i class="fa fa-shopping-cart"></i>Add to Cart</a>' +
             '</a>' +
             '</div>' +
@@ -161,7 +161,7 @@ function BindSerachingProducts(data) {
             '<div class="mt-2">' +
             '<span class="ms-tag ms-tag-success" style="font-size: 20px;">₹ ' + addCommas(data[i].Product_Price) + '</span>' +
             '</div>' +
-            '<a href="javascript:void(0)" onclick="AddToCart(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\')"  class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb">' +
+            '<a href="javascript:void(0)" onclick="AddToCart(\'' + data[i].Product_Title + '\',\'' + data[i].Product_ID + '\',\'' + data[i].SubCategory_Name + '\')"  class="btn btn-primary btn-sm btn-block btn-raised mt-2 no-mb">' +
             ' <i class="fa fa-shopping-cart"></i>Add To Cart</a>' +
             '</a>' +
             '</div>' +
