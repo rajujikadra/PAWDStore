@@ -26,6 +26,7 @@ namespace Rimp_India_Site.WebPages
         [WebMethod]
         public static string PlaceOrder(OrderViewModel model)
         {
+            int O_ID = 0;
             try
             {
                 Rimp_India_DBEntities context = new Rimp_India_DBEntities();
@@ -82,12 +83,13 @@ namespace Rimp_India_Site.WebPages
                 context.Order_Item_Master.AddRange(Items);
                 context.Cart_Master.RemoveRange(CartItem);
                 context.SaveChanges();
+                O_ID = obj.Order_ID;
                 SendMail.SendConfirmationMail(model, obj, Items);
                 return JsonConvert.SerializeObject(obj.Order_ID);
             }
             catch (Exception ex)
             {
-                return JsonConvert.SerializeObject(0);
+                return JsonConvert.SerializeObject(O_ID);
             }
         }
 

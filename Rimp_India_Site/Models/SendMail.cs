@@ -25,9 +25,8 @@ namespace Rimp_India_Site.Models
             body = body.Replace("{Bmobile}", model.BMobile);
             body = body.Replace("{BAddress}", model.BAddress);
             body = body.Replace("{BCity}", model.BCity);
-            body = body.Replace("{BCity}", model.BCity);
-            body = body.Replace("{BState}", model.BCity);
-            body = body.Replace("{BZipcode}", model.BCity);
+            body = body.Replace("{BState}", model.BState);
+            body = body.Replace("{BZipcode}", model.BZipcode);
 
             body = body.Replace("{SName}", model.SName);
             body = body.Replace("{SEmail}", model.SEmail);
