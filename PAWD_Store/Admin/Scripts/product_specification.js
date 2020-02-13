@@ -15,7 +15,6 @@ function SetMode() {
 }
 
 function get_all_product_Specification_by_PID(P_specification_list, PID) {
-    debugger;
     Specification_group_id = 0;
     ProductID = PID;
     $.ajax({
@@ -124,7 +123,6 @@ function InsertProductSpec() {
                     }),
                 dataType: "json",
                 success: function (res) {
-                    debugger;
                     var status = JSON.parse(res.d);
                     if (status == "success") {
                         get_all_spec_by_PID(ProductID);
@@ -180,7 +178,6 @@ function EditProductSpec(spec_id) {
             }),
         dataType: "json",
         success: function (res) {
-            debugger;
             var status = JSON.parse(res.d);
             ProductID = status.Product_ID;
             if (status != null) {

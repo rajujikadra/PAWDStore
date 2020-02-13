@@ -130,7 +130,6 @@ function EditInfo(ID) {
         dataType: "json",
         success: function (res) {
             var info = JSON.parse(res.d);
-            debugger;
             if (info != null && info != undefined) {
                 $("#txtTitle").val(info.Title);
                 $("#txtDesc").val(info.Description)

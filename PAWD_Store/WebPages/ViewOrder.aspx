@@ -185,7 +185,6 @@
     </div>
     <script type="text/javascript">
         function GetOrderDetails(data, OID) {
-            debugger;
             if (data !== null) {
                 $("#Order_No").text(data.Order_No);
                 var num = data.OrderDate.match(/\d+/g); //regex to extract numbers 

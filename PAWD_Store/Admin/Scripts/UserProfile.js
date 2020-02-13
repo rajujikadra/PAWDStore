@@ -64,7 +64,6 @@ function AddUserDetails() {
             }),
             dataType: "json",
             success: function (res) {
-                debugger;
                 var status = JSON.parse(res.d);
                 if (status == "success") {
                     $("#divDetailsUser").css("display", "block");
