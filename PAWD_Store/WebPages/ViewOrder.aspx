@@ -14,8 +14,8 @@
                         <div class="row">
                             <div class="col-md-2 text-left">Order Number :</div>
                             <div class="col-md-1 text-left" id="Order_No"></div>
-                            <div class="col-md-2 text-left">Order Date :</div>
-                            <div class="col-md-1 text-left" id="Order_date"></div>
+                            <div class="col-md-1 text-left">Order Date :</div>
+                            <div class="col-md-2 text-left" id="Order_date"></div>
                             <div class="col-md-2 text-left">Payment Method :</div>
                             <div class="col-md-1 text-left" id="Order_Type"></div>
                             <div class="col-md-1 text-left">Status :</div>
@@ -42,43 +42,43 @@
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>Name </b></td>
-                                <td id="B_name">For all breeds and life stages.</td>
+                                <td id="B_name"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>Email </b></td>
-                                <td id="B_email">Chicken meal</td>
+                                <td id="B_email"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>Mobile </b></td>
-                                <td id="B_mobile">Crude Fibre </td>
+                                <td id="B_mobile"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>Address </b></td>
-                                <td id="B_address">11.4 Kg</td>
+                                <td id="B_address"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>City </b></td>
-                                <td id="B_city">Vitamin A, </td>
+                                <td id="B_city"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>State </b></td>
-                                <td id="B_state">Adult and Puppy Food	</td>
+                                <td id="B_state"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>Zipcode  </b></td>
-                                <td id="B_zipcode">Adult and Puppy Food	</td>
+                                <td id="B_zipcode"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -99,43 +99,43 @@
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>Name </b></td>
-                                <td id="S_name">For all breeds and life stages.</td>
+                                <td id="S_name"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>Email </b></td>
-                                <td id="S_email">Chicken meal</td>
+                                <td id="S_email"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>Mobile </b></td>
-                                <td id="S_mobile">Crude Fibre </td>
+                                <td id="S_mobile"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>Address </b></td>
-                                <td id="S_address">11.4 Kg</td>
+                                <td id="S_address"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>City </b></td>
-                                <td id="S_city">Vitamin A, </td>
+                                <td id="S_city"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>State </b></td>
-                                <td id="S_state">Adult and Puppy Food	</td>
+                                <td id="S_state"></td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td style="width: 50%;"><b>Zipcode  </b></td>
-                                <td id="S_zipcode">Adult and Puppy Food	</td>
+                                <td id="S_zipcode"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -185,25 +185,26 @@
     </div>
     <script type="text/javascript">
         function GetOrderDetails(data, OID) {
+            debugger;
             if (data !== null) {
                 $("#Order_No").text(data.Order_No);
                 var num = data.OrderDate.match(/\d+/g); //regex to extract numbers 
                 var date = new Date(parseFloat(num)); //converting to date
                 $("#Order_date").text(date.getMonth() + 1 + "-" + date.getDate() + '-' + date.getFullYear());
-                $("#B_name").text(date.BName);
-                $("#B_email").text(date.BEmail);
-                $("#B_mobile").text(date.BMobile);
-                $("#B_address").text(date.BAddress);
-                $("#B_city").text(date.BCity);
-                $("#B_state").text(date.BState);
-                $("#B_zipcode").text(date.BZipcode);
-                $("#S_name").text(date.SName);
-                $("#S_email").text(date.SEmail);
-                $("#S_mobile").text(date.SMobile);
-                $("#S_address").text(date.SAddress);
-                $("#S_city").text(date.SCity);
-                $("#S_state").text(date.SState);
-                $("#S_zipcode").text(date.SZipcode);
+                $("#B_name").text(data.BName);
+                $("#B_email").text(data.BEmail);
+                $("#B_mobile").text(data.BMobile);
+                $("#B_address").text(data.BAddress);
+                $("#B_city").text(data.BCity);
+                $("#B_state").text(data.BState);
+                $("#B_zipcode").text(data.BZipcode);
+                $("#S_name").text(data.SName);
+                $("#S_email").text(data.SEmail);
+                $("#S_mobile").text(data.SMobile);
+                $("#S_address").text(data.SAddress);
+                $("#S_city").text(data.SCity);
+                $("#S_state").text(data.SState);
+                $("#S_zipcode").text(data.SZipcode);
                 $("#Order_Type").text(data.OrderType);
                 $("#Order_Status").text(data.OrderStatus);
                 var str = "";
