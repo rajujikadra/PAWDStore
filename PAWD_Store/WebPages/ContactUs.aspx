@@ -83,7 +83,7 @@
                             </p>
                             <p>
                                 <i class="color-info-light zmdi zmdi-email mr-1"></i>
-                                <a href="mailto:test@example.com">nishant.prabhakar1@gmail.com</a>
+                                <a href="mailto:nishant.prabhakar1@gmail.com">nishant.prabhakar1@gmail.com</a>
                             </p>
                             <p>
                                 <i class="color-royal-light zmdi zmdi-phone mr-1"></i>+91 9986703954
