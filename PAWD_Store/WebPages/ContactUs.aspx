@@ -74,31 +74,28 @@
                         <div class="mb-2">
                             <img src="../assets/img/Header_Logo.png" style="height: 100px; width: 100px;">
                         </div>
-                        <address class="no-mb">
+                        <address class="no-mb" style="width: 300px;">
                             <p>
-                                <i class="color-danger-light zmdi zmdi-pin mr-1"></i>S - 33 A/B, ABC Shopping Center Opp. Rajhans Jyot Cinema
+                                <i class="color-danger-light zmdi zmdi-pin mr-1"></i>H.no 82, Sector 37,
                             </p>
                             <p>
-                                <i class="color-warning-light zmdi zmdi-map mr-1"></i>Kamrej Main Road, Surat - 304210
+                                <i class="color-warning-light zmdi zmdi-map mr-1"></i>Faridabad, Haryana - 121003
                             </p>
                             <p>
                                 <i class="color-info-light zmdi zmdi-email mr-1"></i>
-                                <a href="mailto:test@example.com">test@example.com</a>
+                                <a href="mailto:test@example.com">nishant.prabhakar1@gmail.com</a>
                             </p>
                             <p>
-                                <i class="color-royal-light zmdi zmdi-phone mr-1"></i>+91 88566 99566
+                                <i class="color-royal-light zmdi zmdi-phone mr-1"></i>+91 9986703954
                             </p>
-                            <%--<p>
-                                <i class="color-success-light fa fa-fax mr-1"></i>+34 123 456 7890
-                            </p>--%>
                         </address>
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-8 col-md-7">
-                    <iframe width="100%" height="340" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48342.06480344582!2d-73.980069429762!3d40.775680208459505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2589a018531e3%3A0xb9df1f7387a94119!2sCentral+Park!5e0!3m2!1sen!2sus!4v1491233314840" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/"></iframe>
-                    <%--<iframe width="100%" height="340" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48342.06480344582!2d-73.980069429762!3d40.775680208459505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2589a018531e3%3A0xb9df1f7387a94119!2sCentral+Park!5e0!3m2!1sen!2sus!4v1491233314840"></iframe>--%>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.992168467475!2d77.31186691455605!3d28.479782497729733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI4JzQ3LjIiTiA3N8KwMTgnNTAuNiJF!5e0!3m2!1sen!2sus!4v1582008945889!5m2!1sen!2sus" width="100%" height="340"></iframe>
                 </div>
             </div>
         </div>
     </div>
+    <script src="../Scripts/jquery.dataTables.min.js"></script>
 </asp:Content>
